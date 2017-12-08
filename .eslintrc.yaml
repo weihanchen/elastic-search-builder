@@ -11,6 +11,7 @@
       "describe": true,
       "it": true,
       "process": true,
+      "expect": true,
       "__dirname": true,
       "__testBase": true
 

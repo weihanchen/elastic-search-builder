@@ -11,7 +11,10 @@
         "build:docs": "npm run build:md && documentation build src/index.js -o docs -f html",
         "build:md": "documentation build src/index.js -o docs/API.md -f md",
         "build": "npm run lint && babel src -d dist",
-        "lint": "eslint src test"
+        "lint": "eslint src test",
+        "test": "jest",
+        "test:coverage": "jest --coverage --runInBand --forceExit",
+        "test:watch": "jest --watch"
     },
     "author": "weihanchen <willhanchen@gmail.com>",
     "contributors": [],

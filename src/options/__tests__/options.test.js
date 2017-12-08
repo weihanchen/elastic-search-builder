@@ -1,4 +1,4 @@
-import esb from '../';
+import optionsBuilder from '../';
 
 describe('options', () => {
     const answer = {
@@ -9,7 +9,7 @@ describe('options', () => {
     };
     it('build with custom options', () => {
         //Arrange/Act
-        const options = esb().options(answer).build();
+        const options = optionsBuilder(answer).getOptions();
         //Assert
         expect(options).toEqual(answer);
     });

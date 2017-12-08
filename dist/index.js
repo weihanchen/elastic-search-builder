@@ -42,3 +42,5 @@ var esBuilder = function esBuilder() {
 };
 
 exports.default = esBuilder;
+
+module.exports = esBuilder;

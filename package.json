@@ -16,7 +16,10 @@
         "test:coverage": "jest --coverage --runInBand --forceExit",
         "test:watch": "jest --watch"
     },
-    "author": "weihanchen <willhanchen@gmail.com>",
+    "author": {
+        "name": "weihanchen",
+        "email": "willhanchen@gmail.com"
+    },
     "contributors": [],
     "license": "MIT",
     "devDependencies": {

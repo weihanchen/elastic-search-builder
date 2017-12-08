@@ -8,7 +8,8 @@
         "src/"
     ],
     "scripts": {
-        "build:docs": "documentation build src/index.js -o docs -f html --name elasticsearchBuilder",
+        "build:docs": "npm run build:md && documentation build src/index.js -o docs -f html",
+        "build:md": "documentation build src/index.js -o docs/API.md -f md",
         "build": "npm run lint && babel src -d dist --presets es2015,stage-0",
         "lint": "eslint src test",
         "preversion": "npm run build && npm run git-commit",

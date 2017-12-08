@@ -8,6 +8,12 @@ import bodyBuilder from './body';
  * * @return {esBuilder} Builder.
  */
 const esBuilder = () => ({
+   /**
+    * Build with options and body.
+    *
+    *
+    * @return {Object} search option.
+    */
    build(){
       const esOption = this.getOptions && this.getOptions() || {};
       const body = this.getBody &&  this.getBody() || {};

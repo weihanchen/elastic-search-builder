@@ -14,8 +14,19 @@ var _body2 = _interopRequireDefault(_body);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
+/**
+ * elastic-search-builder working with [elasticsearch.js](https://www.elastic.co/guide/en/elasticsearch/client/javascript-api/current/index.html)
+ * 
+ * * @return {esBuilder} Builder.
+ */
 var esBuilder = function esBuilder() {
    return {
+      /**
+       * Build with options and body.
+       *
+       *
+       * @return {Object} search option.
+       */
       build: function build() {
          var esOption = this.getOptions && this.getOptions() || {};
          var body = this.getBody && this.getBody() || {};

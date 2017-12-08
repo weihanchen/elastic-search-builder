@@ -1,3 +1,3 @@
 export default (args) => ( {
-   getShould: () => ({ should: [].concat(...args).filter(el => el)})
+    getShould: () => ({ should: [].concat(...args).filter(el => el)})
 });

@@ -8,18 +8,18 @@ import bodyBuilder from './body';
  * @return {esb} Builder.
  */
 const esBuilder = () => ({
-   /**
+    /**
     * Build with options and body.
     *
     *
     * @return {Object} search option.
     */
-   build(){
-      const esOption = this.getOptions && this.getOptions() || {};
-      const body = this.getBody &&  this.getBody() || {};
-      return Object.assign({}, esOption, body);
-   },
-   /**
+    build(){
+        const esOption = this.getOptions && this.getOptions() || {};
+        const body = this.getBody &&  this.getBody() || {};
+        return Object.assign({}, esOption, body);
+    },
+    /**
     * @param {object} content option body.
     * @return {esb} Builder.
     *
@@ -30,16 +30,26 @@ const esBuilder = () => ({
     * })
     * .build()
     */
-   options(content) {
-      return Object.assign(this, {} ,optionsBuilder(content));
-   },
-   /**
+    options(content) {
+        return Object.assign(this, {} ,optionsBuilder(content));
+    },
+    /**
     * @param {object} content option body.
     * @return {esb} Builder.
+    *
+    * @example
+    * esb().body({
+    *    query: {
+    *       match: {
+    *          message: 'hello'
+    *       }
+    *    }   
+    *})
+    *.build()
     */
-   body(content) {
-      return Object.assign(this, {}, bodyBuilder(content));
-   }
+    body(content) {
+        return Object.assign(this, {}, bodyBuilder(content));
+    }
 });
 
 export default esBuilder;

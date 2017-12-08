@@ -4,15 +4,43 @@
 
 -   [esBuilder](#esbuilder)
 -   [build](#build)
+-   [options](#options)
+-   [body](#body)
 
 ## esBuilder
 
 elastic-search-builder working with [elasticsearch.js](https://www.elastic.co/guide/en/elasticsearch/client/javascript-api/current/index.html)
 
--   @return {esBuilder} Builder.
+Returns **esb** Builder.
 
 ## build
 
 Build with options and body.
 
 Returns **[Object](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object)** search option.
+
+## options
+
+**Parameters**
+
+-   `content` **[object](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object)** option body.
+
+**Examples**
+
+```javascript
+esb().options({
+  index: 'logs',
+  type: '2016.01.01'
+})
+.build()
+```
+
+Returns **esb** Builder.
+
+## body
+
+**Parameters**
+
+-   `content` **[object](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object)** option body.
+
+Returns **esb** Builder.

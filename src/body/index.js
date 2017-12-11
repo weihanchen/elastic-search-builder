@@ -2,6 +2,19 @@ import aggsBuilder from './aggs';
 import queryBuilder from './query';
 
 export default (body = {}) => ({
+    /**
+     * Add query clause to query body
+     * @param {object} queryBody any query clause
+     * @example
+     * esb()
+     *  .body()
+     *  .query({
+     *      match: {
+     *          message: 'hello'
+     *      }
+     *  })
+     *  .build()
+     */
     query(queryBody = {}) {
         Object.assign(this, queryBuilder(queryBody));
         Object.assign(body, {} ,this.getQuery());

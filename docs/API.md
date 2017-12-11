@@ -8,6 +8,7 @@
 -   [body](#body)
 -   [indices](#indices)
 -   [type](#type)
+-   [query](#query)
 
 ## esBuilder
 
@@ -98,5 +99,26 @@ Add type field to option
 esb()
  .options()
  .type(['company', 'school'], 'employee', 'student')
+ .build()
+```
+
+## query
+
+Add query clause to query body
+
+**Parameters**
+
+-   `queryBody` **[object](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object)** any query clause (optional, default `{}`)
+
+**Examples**
+
+```javascript
+esb()
+ .body()
+ .query({
+     match: {
+         message: 'hello'
+     }
+ })
  .build()
 ```

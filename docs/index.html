@@ -83,6 +83,16 @@
                 
                 </li>
               
+                
+                <li><a
+                  href='#query'
+                  class="">
+                  query
+                  
+                </a>
+                
+                </li>
+              
             </ul>
           </div>
           <div class='mt1 h6 quiet'>
@@ -516,6 +526,81 @@
       <pre class='p1 overflow-auto round fill-light'>esb()
  .options()
  .type([<span class="hljs-string">'company'</span>, <span class="hljs-string">'school'</span>], <span class="hljs-string">'employee'</span>, <span class="hljs-string">'student'</span>)
+ .build()</pre>
+    
+  
+
+  
+
+  
+
+  
+</section>
+
+          
+        
+          
+            <section class='p2 mb2 clearfix bg-white minishadow'>
+
+  
+  <div class='clearfix'>
+    
+    <h3 class='fl m0' id='query'>
+      query
+    </h3>
+    
+    
+  </div>
+  
+
+  <p>Add query clause to query body</p>
+
+
+  <div class='pre p1 fill-light mt0'>query(queryBody: <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object">object</a>)</div>
+  
+  
+
+  
+  
+  
+  
+  
+  
+
+  
+    <div class='py1 quiet mt1 prose-big'>Parameters</div>
+    <div class='prose'>
+      
+        <div class='space-bottom0'>
+          <div>
+            <span class='code bold'>queryBody</span> <code class='quiet'>(<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object">object</a>
+            = <code>{}</code>)</code>
+	    any query clause
+
+          </div>
+          
+        </div>
+      
+    </div>
+  
+
+  
+
+  
+
+  
+
+  
+    <div class='py1 quiet mt1 prose-big'>Example</div>
+    
+      
+      <pre class='p1 overflow-auto round fill-light'>esb()
+ .body()
+ .query({
+     <span class="hljs-attr">match</span>: {
+         <span class="hljs-attr">message</span>: <span class="hljs-string">'hello'</span>
+     }
+ })
  .build()</pre>
     
   

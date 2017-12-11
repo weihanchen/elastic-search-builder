@@ -1,14 +1,17 @@
-import indices from './indices';
+import indicesBuilder from './indices';
+import typeBuilder from './type';
 
 
-export default (optionsBody = {}) => ( {
-    indices(...args) {
-        Object.assign(optionsBody, indices(...args));
+export default (body = {}) => ( {
+    indices(indices, ignoreUnavailable, allowNoIndices, expandWildcards) {
+        Object.assign(this, indicesBuilder(indices, ignoreUnavailable, allowNoIndices, expandWildcards));
+        Object.assign(body, this.getIndex());
         return this;
     },
-    type(type) {
-        Object.assign(optionsBody, {type});
+    type(...args) {
+        Object.assign(this, typeBuilder(args));
+        Object.assign(body, this.getType());
         return this;
     },
-    getOptions: () => optionsBody
+    getOptions: () => body
 });

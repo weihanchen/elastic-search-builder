@@ -20,6 +20,8 @@ const esBuilder = () => ({
         return Object.assign({}, esOption, body);
     },
     /**
+    * Add custom options
+    *
     * @param {object} content option body.
     * @return {esb} Builder.
     *
@@ -34,6 +36,8 @@ const esBuilder = () => ({
         return Object.assign(this, {} ,optionsBuilder(content));
     },
     /**
+    * Add custom body
+    * 
     * @param {object} content option body.
     * @return {esb} Builder.
     *

@@ -63,6 +63,26 @@
                 
                 </li>
               
+                
+                <li><a
+                  href='#indices'
+                  class="">
+                  indices
+                  
+                </a>
+                
+                </li>
+              
+                
+                <li><a
+                  href='#type'
+                  class="">
+                  type
+                  
+                </a>
+                
+                </li>
+              
             </ul>
           </div>
           <div class='mt1 h6 quiet'>
@@ -196,7 +216,8 @@
   </div>
   
 
-  
+  <p>Add custom options</p>
+
 
   <div class='pre p1 fill-light mt0'>options(content: <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object">object</a>): esb</div>
   
@@ -274,7 +295,8 @@
   </div>
   
 
-  
+  <p>Add custom body</p>
+
 
   <div class='pre p1 fill-light mt0'>body(content: <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object">object</a>): esb</div>
   
@@ -317,6 +339,185 @@
 
   
 
+  
+    <div class='py1 quiet mt1 prose-big'>Example</div>
+    
+      
+      <pre class='p1 overflow-auto round fill-light'>esb().body({
+   <span class="hljs-attr">query</span>: {
+      <span class="hljs-attr">match</span>: {
+         <span class="hljs-attr">message</span>: <span class="hljs-string">'hello'</span>
+      }
+   }   
+})
+.build()</pre>
+    
+  
+
+  
+
+  
+
+  
+</section>
+
+          
+        
+          
+            <section class='p2 mb2 clearfix bg-white minishadow'>
+
+  
+  <div class='clearfix'>
+    
+    <h3 class='fl m0' id='indices'>
+      indices
+    </h3>
+    
+    
+  </div>
+  
+
+  <p>Add index field to option.</p>
+
+
+  <div class='pre p1 fill-light mt0'>indices(indices: <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Array">array</a>, ignoreUnavailable: bool, allowNoIndices: bool, expandWildcards: <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String">string</a>)</div>
+  
+  
+
+  
+  
+  
+  
+  
+  
+
+  
+    <div class='py1 quiet mt1 prose-big'>Parameters</div>
+    <div class='prose'>
+      
+        <div class='space-bottom0'>
+          <div>
+            <span class='code bold'>indices</span> <code class='quiet'>(<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Array">array</a>)</code>
+	    multi index
+
+          </div>
+          
+        </div>
+      
+        <div class='space-bottom0'>
+          <div>
+            <span class='code bold'>ignoreUnavailable</span> <code class='quiet'>(bool)</code>
+	    Whether specified concrete indices should be ignored when unavailable (missing or closed)
+
+          </div>
+          
+        </div>
+      
+        <div class='space-bottom0'>
+          <div>
+            <span class='code bold'>allowNoIndices</span> <code class='quiet'>(bool)</code>
+	    Whether to ignore if a wildcard indices expression resolves into no concrete indices. (This includes _all string or when no indices have been specified)
+
+          </div>
+          
+        </div>
+      
+        <div class='space-bottom0'>
+          <div>
+            <span class='code bold'>expandWildcards</span> <code class='quiet'>(<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String">string</a>)</code>
+	    Whether to expand wildcard expression to concrete indices that are open, closed or both.
+
+          </div>
+          
+        </div>
+      
+    </div>
+  
+
+  
+
+  
+
+  
+
+  
+    <div class='py1 quiet mt1 prose-big'>Example</div>
+    
+      
+      <pre class='p1 overflow-auto round fill-light'>esb()
+ .options()
+ .indices([<span class="hljs-string">'2016.01.01'</span>], <span class="hljs-literal">true</span>, <span class="hljs-literal">true</span>, <span class="hljs-string">'open'</span>)
+ .build()</pre>
+    
+  
+
+  
+
+  
+
+  
+</section>
+
+          
+        
+          
+            <section class='p2 mb2 clearfix bg-white minishadow'>
+
+  
+  <div class='clearfix'>
+    
+    <h3 class='fl m0' id='type'>
+      type
+    </h3>
+    
+    
+  </div>
+  
+
+  <p>Add type field to option</p>
+
+
+  <div class='pre p1 fill-light mt0'>type(args: ...any)</div>
+  
+  
+
+  
+  
+  
+  
+  
+  
+
+  
+    <div class='py1 quiet mt1 prose-big'>Parameters</div>
+    <div class='prose'>
+      
+        <div class='space-bottom0'>
+          <div>
+            <span class='code bold'>args</span> <code class='quiet'>(...any)</code>
+	    
+          </div>
+          
+        </div>
+      
+    </div>
+  
+
+  
+
+  
+
+  
+
+  
+    <div class='py1 quiet mt1 prose-big'>Example</div>
+    
+      
+      <pre class='p1 overflow-auto round fill-light'>esb()
+ .options()
+ .type([<span class="hljs-string">'company'</span>, <span class="hljs-string">'school'</span>], <span class="hljs-string">'employee'</span>, <span class="hljs-string">'student'</span>)
+ .build()</pre>
+    
   
 
   

@@ -6,6 +6,8 @@
 -   [build](#build)
 -   [options](#options)
 -   [body](#body)
+-   [indices](#indices)
+-   [type](#type)
 
 ## esBuilder
 
@@ -20,6 +22,8 @@ Build with options and body.
 Returns **[Object](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object)** search option.
 
 ## options
+
+Add custom options
 
 **Parameters**
 
@@ -39,8 +43,60 @@ Returns **esb** Builder.
 
 ## body
 
+Add custom body
+
 **Parameters**
 
 -   `content` **[object](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object)** option body.
 
+**Examples**
+
+```javascript
+esb().body({
+   query: {
+      match: {
+         message: 'hello'
+      }
+   }   
+})
+.build()
+```
+
 Returns **esb** Builder.
+
+## indices
+
+Add index field to option.
+
+**Parameters**
+
+-   `indices` **[array](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Array)** multi index
+-   `ignoreUnavailable` **bool** Whether specified concrete indices should be ignored when unavailable (missing or closed)
+-   `allowNoIndices` **bool** Whether to ignore if a wildcard indices expression resolves into no concrete indices. (This includes \_all string or when no indices have been specified)
+-   `expandWildcards` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** Whether to expand wildcard expression to concrete indices that are open, closed or both.
+
+**Examples**
+
+```javascript
+esb()
+ .options()
+ .indices(['2016.01.01'], true, true, 'open')
+ .build()
+```
+
+## type
+
+Add type field to option
+
+**Parameters**
+
+-   `args` **...any** 
+
+**Examples**
+
+```javascript
+esb()
+ .options()
+ .type(['company', 'school'], 'employee', 'student')
+ .build()
+```

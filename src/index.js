@@ -23,14 +23,24 @@ const esBuilder = () => ({
     * Add custom options
     *
     * @param {object} content option body.
-    * @return {esb} Builder.
+    * @return {Object} optionsBuilder {
+    *   indices(indices, ignoreUnavailable, allowNoIndices, expandWildcards),
+    *   type(args),
+    *   getOptions()    
+    *}
     *
     * @example
+    * //build options
     * esb().options({
     *   index: 'logs',
     *   type: '2016.01.01'
-    * })
-    * .build()
+    * }).build()
+    * @example
+    * //get options
+    * esb().options({
+    *   index: 'logs',
+    *   type: '2016.01.01'
+    *}).getOptions()
     */
     options(content) {
         return Object.assign(this, {} ,optionsBuilder(content));

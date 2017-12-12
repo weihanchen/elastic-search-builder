@@ -40,7 +40,11 @@ esb().options({
 .build()
 ```
 
-Returns **esb** Builder.
+Returns **[Object](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object)** optionsBuilder {
+  indices(indices, ignoreUnavailable, allowNoIndices, expandWildcards),
+  type(args),
+  getOptions()  
+}
 
 ## body
 

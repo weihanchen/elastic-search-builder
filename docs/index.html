@@ -281,11 +281,18 @@ getOptions()
     <div class='py1 quiet mt1 prose-big'>Example</div>
     
       
-      <pre class='p1 overflow-auto round fill-light'>esb().options({
+      <pre class='p1 overflow-auto round fill-light'><span class="hljs-comment">//build options</span>
+esb().options({
   <span class="hljs-attr">index</span>: <span class="hljs-string">'logs'</span>,
   <span class="hljs-attr">type</span>: <span class="hljs-string">'2016.01.01'</span>
-})
-.build()</pre>
+}).build()</pre>
+    
+      
+      <pre class='p1 overflow-auto round fill-light'><span class="hljs-comment">//get options</span>
+esb().options({
+  <span class="hljs-attr">index</span>: <span class="hljs-string">'logs'</span>,
+  <span class="hljs-attr">type</span>: <span class="hljs-string">'2016.01.01'</span>
+}).getOptions()</pre>
     
   
 
@@ -397,7 +404,7 @@ getOptions()
   <p>Add index field to option.</p>
 
 
-  <div class='pre p1 fill-light mt0'>indices(indices: <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Array">array</a>, ignoreUnavailable: bool, allowNoIndices: bool, expandWildcards: <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String">string</a>)</div>
+  <div class='pre p1 fill-light mt0'>indices(indices: <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Array">array</a>, ignoreUnavailable: bool, allowNoIndices: bool)</div>
   
   
 
@@ -434,15 +441,6 @@ getOptions()
           <div>
             <span class='code bold'>allowNoIndices</span> <code class='quiet'>(bool)</code>
 	    Whether to ignore if a wildcard indices expression resolves into no concrete indices. (This includes _all string or when no indices have been specified)
-
-          </div>
-          
-        </div>
-      
-        <div class='space-bottom0'>
-          <div>
-            <span class='code bold'>expandWildcards</span> <code class='quiet'>(<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String">string</a>)</code>
-	    Whether to expand wildcard expression to concrete indices that are open, closed or both.
 
           </div>
           

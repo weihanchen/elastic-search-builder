@@ -9,15 +9,14 @@ export default (body = {}) => ( {
      * @param {array} indices multi index
      * @param {bool} ignoreUnavailable Whether specified concrete indices should be ignored when unavailable (missing or closed)
      * @param {bool} allowNoIndices Whether to ignore if a wildcard indices expression resolves into no concrete indices. (This includes _all string or when no indices have been specified)
-     * @param {string} expandWildcards Whether to expand wildcard expression to concrete indices that are open, closed or both.
      * @example
      * esb()
      *  .options()
      *  .indices(['2016.01.01'], true, true, 'open')
      *  .build()
      */
-    indices(indices, ignoreUnavailable, allowNoIndices, expandWildcards) {
-        Object.assign(this, indicesBuilder(indices, ignoreUnavailable, allowNoIndices, expandWildcards));
+    indices(indices, ignoreUnavailable, allowNoIndices) {
+        Object.assign(this, indicesBuilder(indices, ignoreUnavailable, allowNoIndices));
         Object.assign(body, this.getIndex());
         return this;
     },

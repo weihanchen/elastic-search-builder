@@ -3,7 +3,7 @@ import esb from '../';
 describe('body', () => {
     it('build with custom body', () => {
         //Arrange/Act
-        const options = esb().body({
+        const option = esb().body({
             query: {
                 match: {
                     message: 'hello world'
@@ -11,7 +11,7 @@ describe('body', () => {
             }
         }).build();
         //Assert
-        expect(options).toEqual({
+        expect(option).toEqual({
             body: {
                 query: {
                     match: {
@@ -23,17 +23,17 @@ describe('body', () => {
     });
 });
 
-describe('options', () => {
+describe('option', () => {
     const answer = {
         index: '20170701,20170702',
         type: 'employee',
         ignoreUnavailable: true,
         allowNoIndices: true
     };
-    it('build with custom options', () => {
+    it('build with custom option', () => {
         //Arrange/Act
-        const options = esb().options(answer).getOptions();
+        const option = esb().option(answer).getOption();
         //Assert
-        expect(options).toEqual(answer);
+        expect(option).toEqual(answer);
     });
 });

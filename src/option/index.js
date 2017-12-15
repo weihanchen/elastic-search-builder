@@ -35,5 +35,5 @@ export default (body = {}) => ( {
         Object.assign(body, this.getType());
         return this;
     },
-    getOptions: () => body
+    getOption: () => body
 });

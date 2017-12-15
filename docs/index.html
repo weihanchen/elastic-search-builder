@@ -45,9 +45,9 @@
               
                 
                 <li><a
-                  href='#options'
+                  href='#option'
                   class="">
-                  options
+                  option
                   
                 </a>
                 
@@ -218,18 +218,18 @@
   
   <div class='clearfix'>
     
-    <h3 class='fl m0' id='options'>
-      options
+    <h3 class='fl m0' id='option'>
+      option
     </h3>
     
     
   </div>
   
 
-  <p>Add custom options</p>
+  <p>Add custom option</p>
 
 
-  <div class='pre p1 fill-light mt0'>options(content: <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object">object</a>): <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a></div>
+  <div class='pre p1 fill-light mt0'>option(content: <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object">object</a>): <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a></div>
   
   
 
@@ -262,7 +262,7 @@
     
       <div class='py1 quiet mt1 prose-big'>Returns</div>
       <code><a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a></code>:
-        optionsBuilder {
+        optionBuilder {
 indices(indices, ignoreUnavailable, allowNoIndices, expandWildcards),
 type(args),
 getOptions()
@@ -281,15 +281,15 @@ getOptions()
     <div class='py1 quiet mt1 prose-big'>Example</div>
     
       
-      <pre class='p1 overflow-auto round fill-light'><span class="hljs-comment">//build options</span>
-esb().options({
+      <pre class='p1 overflow-auto round fill-light'><span class="hljs-comment">//build option</span>
+esb().option({
   <span class="hljs-attr">index</span>: <span class="hljs-string">'logs'</span>,
   <span class="hljs-attr">type</span>: <span class="hljs-string">'2016.01.01'</span>
 }).build()</pre>
     
       
-      <pre class='p1 overflow-auto round fill-light'><span class="hljs-comment">//get options</span>
-esb().options({
+      <pre class='p1 overflow-auto round fill-light'><span class="hljs-comment">//get option</span>
+esb().option({
   <span class="hljs-attr">index</span>: <span class="hljs-string">'logs'</span>,
   <span class="hljs-attr">type</span>: <span class="hljs-string">'2016.01.01'</span>
 }).getOptions()</pre>

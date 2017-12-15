@@ -1,12 +1,12 @@
-import optionsBuilder from '../';
+import optionBuilder from '../';
 
 describe('indices', () => {
     it('build with basic indices', () => {
         //Arrange/Act
         const indices = ['2017.01.01', '2017.01.02'];
-        const options = optionsBuilder().indices(indices).getOptions();
+        const option = optionBuilder().indices(indices).getOption();
         //Assert
-        expect(options).toEqual({
+        expect(option).toEqual({
             index: '2017.01.01,2017.01.02',
             ignoreUnavailable: false,
             allowNoIndices: false
@@ -15,9 +15,9 @@ describe('indices', () => {
     it('build with indices option', () => {
         //Arrange/Act
         const indices = ['2017.01.01', '2017.01.02'];
-        const options = optionsBuilder().indices(indices, true, true).getOptions();
+        const option = optionBuilder().indices(indices, true, true).getOption();
         //Assert
-        expect(options).toEqual({
+        expect(option).toEqual({
             index: '2017.01.01,2017.01.02',
             ignoreUnavailable: true,
             allowNoIndices: true

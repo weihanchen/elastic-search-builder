@@ -1,27 +1,27 @@
-import optionsBuilder from '../';
+import optionBuilder from '../';
 
 describe('type', () => {
     it('build with string type', () => {
         //Arrange/Act
-        const options = optionsBuilder().type('employee').getOptions();
+        const option = optionBuilder().type('employee').getOption();
         //Assert
-        expect(options).toEqual({
+        expect(option).toEqual({
             type: 'employee'
         });
     });
     it('build with array type', () => {
         //Arrange/Act
-        const options = optionsBuilder().type(['company', 'school']).getOptions();
+        const option = optionBuilder().type(['company', 'school']).getOption();
         //Assert
-        expect(options).toEqual({
+        expect(option).toEqual({
             type: 'company,school'
         });
     });
     it('build with mix type', () => {
         //Arrange/Act
-        const options = optionsBuilder().type(['company', 'school'], 'employee', 'student').getOptions();
+        const option = optionBuilder().type(['company', 'school'], 'employee', 'student').getOption();
         //Assert
-        expect(options).toEqual({
+        expect(option).toEqual({
             type: 'company,school,employee,student'
         });
     });

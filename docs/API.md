@@ -4,7 +4,7 @@
 
 -   [esBuilder](#esbuilder)
 -   [build](#build)
--   [options](#options)
+-   [option](#option)
 -   [body](#body)
 -   [indices](#indices)
 -   [type](#type)
@@ -22,9 +22,9 @@ Build with options and body.
 
 Returns **[Object](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object)** search option.
 
-## options
+## option
 
-Add custom options
+Add custom option
 
 **Parameters**
 
@@ -33,22 +33,22 @@ Add custom options
 **Examples**
 
 ```javascript
-//build options
-esb().options({
+//build option
+esb().option({
   index: 'logs',
   type: '2016.01.01'
 }).build()
 ```
 
 ```javascript
-//get options
-esb().options({
+//get option
+esb().option({
   index: 'logs',
   type: '2016.01.01'
 }).getOptions()
 ```
 
-Returns **[Object](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object)** optionsBuilder {
+Returns **[Object](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object)** optionBuilder {
   indices(indices, ignoreUnavailable, allowNoIndices, expandWildcards),
   type(args),
   getOptions()  

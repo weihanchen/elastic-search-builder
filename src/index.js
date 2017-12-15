@@ -1,5 +1,5 @@
 'use strict';
-import optionsBuilder from './options';
+import optionBuilder from './option';
 import bodyBuilder from './body';
 
 /**
@@ -15,35 +15,35 @@ const esBuilder = () => ({
     * @return {Object} search option.
     */
     build(){
-        const esOption = this.getOptions && this.getOptions() || {};
+        const esOption = this.getOption && this.getOption() || {};
         const body = this.getBody &&  this.getBody() || {};
         return Object.assign({}, esOption, body);
     },
     /**
-    * Add custom options
+    * Add custom option
     *
     * @param {object} content option body.
-    * @return {Object} optionsBuilder {
+    * @return {Object} optionBuilder {
     *   indices(indices, ignoreUnavailable, allowNoIndices, expandWildcards),
     *   type(args),
     *   getOptions()    
     *}
     *
     * @example
-    * //build options
-    * esb().options({
+    * //build option
+    * esb().option({
     *   index: 'logs',
     *   type: '2016.01.01'
     * }).build()
     * @example
-    * //get options
-    * esb().options({
+    * //get option
+    * esb().option({
     *   index: 'logs',
     *   type: '2016.01.01'
     *}).getOptions()
     */
-    options(content) {
-        return Object.assign(this, {} ,optionsBuilder(content));
+    option(content) {
+        return Object.assign(this, {} ,optionBuilder(content));
     },
     /**
     * Add custom body

@@ -1,7 +1,7 @@
 Elasticsearch Builder
 ===
 
-This lib working with [elasticsearch.js](https://www.elastic.co/guide/en/elasticsearch/client/javascript-api/current/index.html), flatten options and  query bodies.
+This lib working with [elasticsearch.js](https://www.elastic.co/guide/en/elasticsearch/client/javascript-api/current/index.html), flatten option and  query bodies.
 
 ## Installation
 
@@ -13,8 +13,8 @@ const client = new elasticsearch.Client({
   host: 'localhost:9200'
 });
 const esb = require('elastic-search-builder');
-const options = esb()
-   .options()
+const option = esb()
+   .option()
    .indices(['2016.01.01'])
    .body()
    .query({
@@ -22,7 +22,23 @@ const options = esb()
          dialogs: 'hello world'
       }
    }).build();
-client.search(options).then(body => {
+client.search(option).then(body => {
    console.log(body);
 })
+```
+
+## Bool Query
+```javascript
+
+```
+
+## Documentation
+
+* [API.md](./docs/API.md)
+
+## Test
+Run unit tests:
+
+```sh
+npm run test
 ```

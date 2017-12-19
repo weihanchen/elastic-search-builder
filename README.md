@@ -35,7 +35,7 @@ client.search(searchParams).then(body => {
 
 ## Bool Query
 ```javascript
-const searchParams = esb()
+esb()
   .body()
   .query()
   .bool()
@@ -78,9 +78,97 @@ const searchParams = esb()
 ```
 
 ## Nested aggregation
+### basic usage
 
 ```javascript
+esb()
+  .aggs()
+  .appendAggs('all_agent_name', 'name', {
+    "field": "customerPhoneNo"
+  })
+  .subAggs()
+  .appendAggs('all_customer_gender', 'terms', {
+      "field": "customerGender"
+   })
+{
+  "aggs": {
+    "all_agent_name": {
+      "terms": {
+        "field": "customerPhoneNo"
+      },
+      "aggs": {
+        "all_customer_gender": {
+          "terms": {
+            "field": "customerGender"
+          }
+        }
+      }
+    }
+  }
+}
+```
 
+### advanced usage
+build nested aggragation without callback
+
+```javascript
+esb()
+   .aggs()
+   .appendAggs('all_agent_name', 'terms', {
+      "field": "customerPhoneNo"
+   })
+   .subAggs()
+   .forkAggs()
+   .appendAggs('all_customer_phone', 'terms', {
+      "field": "customerPhoneNo"
+   })
+   .subAggs('all_customer_gender', 'terms', {
+      "field": "customerGender"
+   })
+   .mergeAggs()
+   .appendAggs('all_agent_id', 'terms', {
+      "field": "agentId"
+   })
+   .subAggs()
+   .appendAggs('all_customer_gender', 'terms', {
+      "field": "customerGender"
+   })
+
+// {
+//  "aggs": {
+//     "all_agent_name": {
+//       "terms": {
+//         "field": "agentName"
+//       },
+//       "aggs": {
+//         "all_customer_phone": {
+//           "terms": {
+//             "field": "customerPhoneNo"
+//           },
+//           "aggs": {
+//             "all_customer_gender": {
+//               "terms": {
+//                 "field": "customerGender"
+//               }
+//             }
+//           }
+//         },
+//         "all_agent_id": {
+//           "terms": {
+//             "field": "agentId"
+//           },
+//           "aggs": {
+//             "all_customer_gender": {
+//               "terms": {
+//                 "field": "customerGender"
+//               }
+//             }
+//           }
+//         }
+//       }
+//     }
+//   }
+// }
 ```
 
 ## Documentation

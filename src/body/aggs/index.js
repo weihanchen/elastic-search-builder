@@ -20,6 +20,12 @@ export default (aggsBody = {}) => {
             currentNode = aggsBody[name] || aggsBody;
             return this;
         },
+        forkAggs() {
+            
+        },
+        mergeAggs() {
+
+        },
         getAggs: () => res
     };
 };

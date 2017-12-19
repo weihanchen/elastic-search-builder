@@ -11,10 +11,38 @@ export default (queryBody) => ({
      *  .query()
      *  .bool({
      *      must: {
-     *          "term" : { "user" : "kimchy" }
+     *          term : { user : 'kimchy' }
+     *      },
+     *      must_not: {
+     *          range: {
+     *              age: {
+     *                  gte: 10,
+     *                  lte: 20
+     *              }
+     *          }
      *      }
      *  })
      *  .build()
+     * //result:
+     * {
+     *      "body": {
+     *          "query": {
+     *              "bool": {
+     *                  "must": {
+     *                      "term": { "user": "kimchy"}
+     *                  },
+     *                  "must_not": {
+     *                      "range": {
+     *                          "age": {
+     *                              "gte": 10,
+     *                              "lte": 20
+     *                          }
+     *                      }
+     *                  }
+     *              }
+     *          }
+     *      }
+     * }
      */
     bool(boolBody) {
         Object.assign(this, boolBuilder(boolBody));

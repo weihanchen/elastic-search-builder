@@ -17,7 +17,7 @@ import bodyBuilder from './body';
  *      host: 'localhost:9200'
  * });
  * const esb = require('elastic-search-builder');
- * const option = esb()
+ * const searchparams = esb()
  *  .option()
  *  .indices(['2016.01.01'])
  *  .body()
@@ -28,7 +28,7 @@ import bodyBuilder from './body';
  *   })
  *  .aggs()
  *  .build();
- * client.search(option).then(body => {
+ * client.search(searchparams).then(body => {
  *      console.log(body)
  * })
  */

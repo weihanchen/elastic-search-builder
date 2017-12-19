@@ -1082,10 +1082,38 @@ esb()
  .query()
  .bool({
      <span class="hljs-attr">must</span>: {
-         <span class="hljs-string">"term"</span> : { <span class="hljs-string">"user"</span> : <span class="hljs-string">"kimchy"</span> }
+         <span class="hljs-attr">term</span> : { <span class="hljs-attr">user</span> : <span class="hljs-string">'kimchy'</span> }
+     },
+     <span class="hljs-attr">must_not</span>: {
+         <span class="hljs-attr">range</span>: {
+             <span class="hljs-attr">age</span>: {
+                 <span class="hljs-attr">gte</span>: <span class="hljs-number">10</span>,
+                 <span class="hljs-attr">lte</span>: <span class="hljs-number">20</span>
+             }
+         }
      }
  })
- .build()</pre>
+ .build()
+<span class="hljs-comment">//result:</span>
+{
+     <span class="hljs-string">"body"</span>: {
+         <span class="hljs-string">"query"</span>: {
+             <span class="hljs-string">"bool"</span>: {
+                 <span class="hljs-string">"must"</span>: {
+                     <span class="hljs-string">"term"</span>: { <span class="hljs-string">"user"</span>: <span class="hljs-string">"kimchy"</span>}
+                 },
+                 <span class="hljs-string">"must_not"</span>: {
+                     <span class="hljs-string">"range"</span>: {
+                         <span class="hljs-string">"age"</span>: {
+                             <span class="hljs-string">"gte"</span>: <span class="hljs-number">10</span>,
+                             <span class="hljs-string">"lte"</span>: <span class="hljs-number">20</span>
+                         }
+                     }
+                 }
+             }
+         }
+     }
+}</pre>
     
   
 

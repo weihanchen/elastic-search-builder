@@ -42,3 +42,6 @@ Run unit tests:
 ```sh
 npm run test
 ```
+
+## Credits
+`elastic-search-builder` is inspired by [bodybuilder](https://github.com/danpaz/bodybuilder) for documentation, build step.

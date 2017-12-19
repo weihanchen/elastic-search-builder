@@ -5,42 +5,46 @@ import bodyBuilder from './body';
 /**
  * elastic-search-builder working with [elasticsearch.js](https://www.elastic.co/guide/en/elasticsearch/client/javascript-api/current/index.html)
  * 
- * @return {esb} Builder.
+ * See more use case in the docs as well as in the tests.
+ * 
+ * @return {option|body|build} see below.
+ *
+ * @example
+ * Usage
+ * 
+ * const elasticsearch = require('elasticsearch');
+ * const client = new elasticsearch.Client({
+ *      host: 'localhost:9200'
+ * });
+ * const esb = require('elastic-search-builder');
+ * const option = esb()
+ *  .option()
+ *  .indices(['2016.01.01'])
+ *  .body()
+ *  .query({
+ *      match: {
+ *          message: 'hello world'
+ *      }
+ *   })
+ *  .aggs()
+ *  .build();
+ * client.search(option).then(body => {
+ *      console.log(body)
+ * })
  */
 const esBuilder = () => ({
     /**
-    * Build with options and body.
-    *
-    *
-    * @return {Object} search option.
-    */
-    build(){
-        const esOption = this.getOption && this.getOption() || {};
-        const body = this.getBody &&  this.getBody() || {};
-        return Object.assign({}, esOption, body);
-    },
-    /**
     * Add custom option
     *
-    * @param {object} content option body.
-    * @return {Object} optionBuilder {
-    *   indices(indices, ignoreUnavailable, allowNoIndices, expandWildcards),
-    *   type(args),
-    *   getOptions()    
-    *}
+    * @param {Object} content option body.
     *
+    * @return {indices|type} - see below
     * @example
     * //build option
     * esb().option({
     *   index: 'logs',
     *   type: '2016.01.01'
     * }).build()
-    * @example
-    * //get option
-    * esb().option({
-    *   index: 'logs',
-    *   type: '2016.01.01'
-    *}).getOptions()
     */
     option(content) {
         return Object.assign(this, {} ,optionBuilder(content));
@@ -48,9 +52,8 @@ const esBuilder = () => ({
     /**
     * Add custom body
     * 
-    * @param {object} content option body.
-    * @return {esb} Builder.
-    *
+    * @param {Object} content option body.
+    * @return {query|aggs|fields|size|from} see below.
     * @example
     * esb().body({
     *    query: {
@@ -63,6 +66,17 @@ const esBuilder = () => ({
     */
     body(content) {
         return Object.assign(this, {}, bodyBuilder(content));
+    },
+    /**
+    * Build with options and body.
+    *
+    *
+    * @return {Object} search option.
+    */
+    build(){
+        const esOption = this.getOption && this.getOption() || {};
+        const body = this.getBody &&  this.getBody() || {};
+        return Object.assign({}, esOption, body);
     }
 });
 

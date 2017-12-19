@@ -3,24 +3,51 @@
 ### Table of Contents
 
 -   [esBuilder](#esbuilder)
--   [build](#build)
 -   [option](#option)
 -   [body](#body)
+-   [build](#build)
 -   [indices](#indices)
 -   [type](#type)
 -   [query](#query)
+-   [aggs](#aggs)
+-   [fields](#fields)
+-   [size](#size)
+-   [from](#from)
+-   [bool](#bool)
 
 ## esBuilder
 
 elastic-search-builder working with [elasticsearch.js](https://www.elastic.co/guide/en/elasticsearch/client/javascript-api/current/index.html)
 
-Returns **esb** Builder.
+See more use case in the docs as well as in the tests.
 
-## build
+**Examples**
 
-Build with options and body.
+```javascript
+Usage
 
-Returns **[Object](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object)** search option.
+const elasticsearch = require('elasticsearch');
+const client = new elasticsearch.Client({
+     host: 'localhost:9200'
+});
+const esb = require('elastic-search-builder');
+const option = esb()
+ .option()
+ .indices(['2016.01.01'])
+ .body()
+ .query({
+     match: {
+         message: 'hello world'
+     }
+  })
+ .aggs()
+ .build();
+client.search(option).then(body => {
+     console.log(body)
+})
+```
+
+Returns **([option](#option) \| [body](#body) \| [build](#build))** see below.
 
 ## option
 
@@ -28,7 +55,7 @@ Add custom option
 
 **Parameters**
 
--   `content` **[object](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object)** option body.
+-   `content` **[Object](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object)** option body.
 
 **Examples**
 
@@ -40,19 +67,7 @@ esb().option({
 }).build()
 ```
 
-```javascript
-//get option
-esb().option({
-  index: 'logs',
-  type: '2016.01.01'
-}).getOptions()
-```
-
-Returns **[Object](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object)** optionBuilder {
-  indices(indices, ignoreUnavailable, allowNoIndices, expandWildcards),
-  type(args),
-  getOptions()  
-}
+Returns **([indices](#indices) \| [type](#type))** see below
 
 ## body
 
@@ -60,7 +75,7 @@ Add custom body
 
 **Parameters**
 
--   `content` **[object](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object)** option body.
+-   `content` **[Object](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object)** option body.
 
 **Examples**
 
@@ -75,7 +90,13 @@ esb().body({
 .build()
 ```
 
-Returns **esb** Builder.
+Returns **([query](#query) \| [aggs](#aggs) \| [fields](#fields) \| [size](#size) \| [from](#from))** see below.
+
+## build
+
+Build with options and body.
+
+Returns **[Object](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object)** search option.
 
 ## indices
 
@@ -83,9 +104,9 @@ Add index field to option.
 
 **Parameters**
 
--   `indices` **[array](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Array)** multi index
--   `ignoreUnavailable` **bool** Whether specified concrete indices should be ignored when unavailable (missing or closed)
--   `allowNoIndices` **bool** Whether to ignore if a wildcard indices expression resolves into no concrete indices. (This includes \_all string or when no indices have been specified)
+-   `indices` **[Array](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Array)** multi index
+-   `ignoreUnavailable` **[Boolean](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Boolean)** Whether specified concrete indices should be ignored when unavailable (missing or closed)
+-   `allowNoIndices` **[Boolean](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Boolean)** Whether to ignore if a wildcard indices expression resolves into no concrete indices. (This includes \_all string or when no indices have been specified)
 
 **Examples**
 
@@ -119,11 +140,12 @@ Add query clause to query body
 
 **Parameters**
 
--   `queryBody` **[object](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object)** any query clause (optional, default `{}`)
+-   `queryBody` **[Object](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object)** any query clause (optional, default `{}`)
 
 **Examples**
 
 ```javascript
+//build body
 esb()
  .body()
  .query({
@@ -132,4 +154,142 @@ esb()
      }
  })
  .build()
+//result:
+{
+    body: {
+         query: {
+             match: {
+                 message: 'hello'
+             }
+        }   
+    }
+}
 ```
+
+Returns **[bool](#bool)** see below.
+
+## aggs
+
+Add aggragation to aggs body
+
+**Parameters**
+
+-   `aggsBody` **[Object](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object)** any aggragation body (optional, default `{}`)
+
+**Examples**
+
+```javascript
+esb()
+ .body()
+ .aggs({
+     message: {
+         terms: {
+             field: 'message'
+         }
+     }
+ })
+ .build();
+//result:
+{
+     body: {
+         aggs: {
+             message: {
+                 terms: {
+                     field: 'message'
+                 }
+             }
+         }
+     }
+}
+```
+
+## fields
+
+**_<https://www.elastic.co/guide/en/elasticsearch/reference/current/search-field-caps.html>_**
+
+**Parameters**
+
+-   `args` **...any** 
+
+**Examples**
+
+```javascript
+esb()
+ .body()
+ .fields('rating', 'count')
+ .build()
+//result:
+{
+     body: {
+         fields: ['rating', 'count']
+     }
+}
+```
+
+## size
+
+**_<https://www.elastic.co/guide/en/elasticsearch/reference/current/search-request-from-size.html>_**
+
+**Parameters**
+
+-   `size` **[Number](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number)**  (optional, default `0`)
+
+**Examples**
+
+```javascript
+esb()
+ .size(10)
+ .build()
+//result:
+{
+     body: {
+         size: 10
+     }
+}
+```
+
+## from
+
+**_<https://www.elastic.co/guide/en/elasticsearch/reference/current/search-request-from-size.html>_**
+
+**Parameters**
+
+-   `from` **[Number](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number)**  (optional, default `0`)
+
+**Examples**
+
+```javascript
+esb()
+ .from(1)
+ .build()
+//result:
+{
+     body: {
+         from: 1
+     }
+}
+```
+
+## bool
+
+Add bool clause to query body.
+
+**Parameters**
+
+-   `boolBody` **[Object](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object)** bool clause
+
+**Examples**
+
+```javascript
+esb()
+ .body()
+ .query()
+ .bool({
+     must: {
+         "term" : { "user" : "kimchy" }
+     }
+ })
+ .build()
+```
+
+Returns **(boolMust | boolNot | boolShould | boolFilter)** see below.

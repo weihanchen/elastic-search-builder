@@ -35,16 +35,6 @@
               
                 
                 <li><a
-                  href='#build'
-                  class="">
-                  build
-                  
-                </a>
-                
-                </li>
-              
-                
-                <li><a
                   href='#option'
                   class="">
                   option
@@ -58,6 +48,16 @@
                   href='#body'
                   class="">
                   body
+                  
+                </a>
+                
+                </li>
+              
+                
+                <li><a
+                  href='#build'
+                  class="">
+                  build
                   
                 </a>
                 
@@ -93,6 +93,56 @@
                 
                 </li>
               
+                
+                <li><a
+                  href='#aggs'
+                  class="">
+                  aggs
+                  
+                </a>
+                
+                </li>
+              
+                
+                <li><a
+                  href='#fields'
+                  class="">
+                  fields
+                  
+                </a>
+                
+                </li>
+              
+                
+                <li><a
+                  href='#size'
+                  class="">
+                  size
+                  
+                </a>
+                
+                </li>
+              
+                
+                <li><a
+                  href='#from'
+                  class="">
+                  from
+                  
+                </a>
+                
+                </li>
+              
+                
+                <li><a
+                  href='#bool'
+                  class="">
+                  bool
+                  
+                </a>
+                
+                </li>
+              
             </ul>
           </div>
           <div class='mt1 h6 quiet'>
@@ -117,6 +167,7 @@
   
 
   <p>elastic-search-builder working with <a href="https://www.elastic.co/guide/en/elasticsearch/client/javascript-api/current/index.html">elasticsearch.js</a></p>
+<p>See more use case in the docs as well as in the tests.</p>
 
 
   <div class='pre p1 fill-light mt0'>esBuilder</div>
@@ -137,8 +188,8 @@
   
     
       <div class='py1 quiet mt1 prose-big'>Returns</div>
-      <code>esb</code>:
-        Builder.
+      <code>(<a href="#option">option</a> | <a href="#body">body</a> | <a href="#build">build</a>)</code>:
+        see below.
 
       
     
@@ -146,6 +197,193 @@
 
   
 
+  
+    <div class='py1 quiet mt1 prose-big'>Example</div>
+    
+      
+      <pre class='p1 overflow-auto round fill-light'>Usage
+
+<span class="hljs-keyword">const</span> elasticsearch = <span class="hljs-built_in">require</span>(<span class="hljs-string">'elasticsearch'</span>);
+<span class="hljs-keyword">const</span> client = <span class="hljs-keyword">new</span> elasticsearch.Client({
+     <span class="hljs-attr">host</span>: <span class="hljs-string">'localhost:9200'</span>
+});
+<span class="hljs-keyword">const</span> esb = <span class="hljs-built_in">require</span>(<span class="hljs-string">'elastic-search-builder'</span>);
+<span class="hljs-keyword">const</span> option = esb()
+ .option()
+ .indices([<span class="hljs-string">'2016.01.01'</span>])
+ .body()
+ .query({
+     <span class="hljs-attr">match</span>: {
+         <span class="hljs-attr">message</span>: <span class="hljs-string">'hello world'</span>
+     }
+  })
+ .aggs()
+ .build();
+client.search(option).then(<span class="hljs-function"><span class="hljs-params">body</span> =&gt;</span> {
+     <span class="hljs-built_in">console</span>.log(body)
+})</pre>
+    
+  
+
+  
+
+  
+
+  
+</section>
+
+          
+        
+          
+            <section class='p2 mb2 clearfix bg-white minishadow'>
+
+  
+  <div class='clearfix'>
+    
+    <h3 class='fl m0' id='option'>
+      option
+    </h3>
+    
+    
+  </div>
+  
+
+  <p>Add custom option</p>
+
+
+  <div class='pre p1 fill-light mt0'>option(content: <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a>): (<a href="#indices">indices</a> | <a href="#type">type</a>)</div>
+  
+  
+
+  
+  
+  
+  
+  
+  
+
+  
+    <div class='py1 quiet mt1 prose-big'>Parameters</div>
+    <div class='prose'>
+      
+        <div class='space-bottom0'>
+          <div>
+            <span class='code bold'>content</span> <code class='quiet'>(<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a>)</code>
+	    option body.
+
+          </div>
+          
+        </div>
+      
+    </div>
+  
+
+  
+
+  
+    
+      <div class='py1 quiet mt1 prose-big'>Returns</div>
+      <code>(<a href="#indices">indices</a> | <a href="#type">type</a>)</code>:
+        see below
+
+      
+    
+  
+
+  
+
+  
+    <div class='py1 quiet mt1 prose-big'>Example</div>
+    
+      
+      <pre class='p1 overflow-auto round fill-light'><span class="hljs-comment">//build option</span>
+esb().option({
+  <span class="hljs-attr">index</span>: <span class="hljs-string">'logs'</span>,
+  <span class="hljs-attr">type</span>: <span class="hljs-string">'2016.01.01'</span>
+}).build()</pre>
+    
+  
+
+  
+
+  
+
+  
+</section>
+
+          
+        
+          
+            <section class='p2 mb2 clearfix bg-white minishadow'>
+
+  
+  <div class='clearfix'>
+    
+    <h3 class='fl m0' id='body'>
+      body
+    </h3>
+    
+    
+  </div>
+  
+
+  <p>Add custom body</p>
+
+
+  <div class='pre p1 fill-light mt0'>body(content: <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a>): (<a href="#query">query</a> | <a href="#aggs">aggs</a> | <a href="#fields">fields</a> | <a href="#size">size</a> | <a href="#from">from</a>)</div>
+  
+  
+
+  
+  
+  
+  
+  
+  
+
+  
+    <div class='py1 quiet mt1 prose-big'>Parameters</div>
+    <div class='prose'>
+      
+        <div class='space-bottom0'>
+          <div>
+            <span class='code bold'>content</span> <code class='quiet'>(<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a>)</code>
+	    option body.
+
+          </div>
+          
+        </div>
+      
+    </div>
+  
+
+  
+
+  
+    
+      <div class='py1 quiet mt1 prose-big'>Returns</div>
+      <code>(<a href="#query">query</a> | <a href="#aggs">aggs</a> | <a href="#fields">fields</a> | <a href="#size">size</a> | <a href="#from">from</a>)</code>:
+        see below.
+
+      
+    
+  
+
+  
+
+  
+    <div class='py1 quiet mt1 prose-big'>Example</div>
+    
+      
+      <pre class='p1 overflow-auto round fill-light'>esb().body({
+   <span class="hljs-attr">query</span>: {
+      <span class="hljs-attr">match</span>: {
+         <span class="hljs-attr">message</span>: <span class="hljs-string">'hello'</span>
+      }
+   }   
+})
+.build()</pre>
+    
   
 
   
@@ -218,181 +456,6 @@
   
   <div class='clearfix'>
     
-    <h3 class='fl m0' id='option'>
-      option
-    </h3>
-    
-    
-  </div>
-  
-
-  <p>Add custom option</p>
-
-
-  <div class='pre p1 fill-light mt0'>option(content: <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object">object</a>): <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a></div>
-  
-  
-
-  
-  
-  
-  
-  
-  
-
-  
-    <div class='py1 quiet mt1 prose-big'>Parameters</div>
-    <div class='prose'>
-      
-        <div class='space-bottom0'>
-          <div>
-            <span class='code bold'>content</span> <code class='quiet'>(<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object">object</a>)</code>
-	    option body.
-
-          </div>
-          
-        </div>
-      
-    </div>
-  
-
-  
-
-  
-    
-      <div class='py1 quiet mt1 prose-big'>Returns</div>
-      <code><a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a></code>:
-        optionBuilder {
-indices(indices, ignoreUnavailable, allowNoIndices, expandWildcards),
-type(args),
-getOptions()
-<br>
-
-
-}
-
-      
-    
-  
-
-  
-
-  
-    <div class='py1 quiet mt1 prose-big'>Example</div>
-    
-      
-      <pre class='p1 overflow-auto round fill-light'><span class="hljs-comment">//build option</span>
-esb().option({
-  <span class="hljs-attr">index</span>: <span class="hljs-string">'logs'</span>,
-  <span class="hljs-attr">type</span>: <span class="hljs-string">'2016.01.01'</span>
-}).build()</pre>
-    
-      
-      <pre class='p1 overflow-auto round fill-light'><span class="hljs-comment">//get option</span>
-esb().option({
-  <span class="hljs-attr">index</span>: <span class="hljs-string">'logs'</span>,
-  <span class="hljs-attr">type</span>: <span class="hljs-string">'2016.01.01'</span>
-}).getOptions()</pre>
-    
-  
-
-  
-
-  
-
-  
-</section>
-
-          
-        
-          
-            <section class='p2 mb2 clearfix bg-white minishadow'>
-
-  
-  <div class='clearfix'>
-    
-    <h3 class='fl m0' id='body'>
-      body
-    </h3>
-    
-    
-  </div>
-  
-
-  <p>Add custom body</p>
-
-
-  <div class='pre p1 fill-light mt0'>body(content: <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object">object</a>): esb</div>
-  
-  
-
-  
-  
-  
-  
-  
-  
-
-  
-    <div class='py1 quiet mt1 prose-big'>Parameters</div>
-    <div class='prose'>
-      
-        <div class='space-bottom0'>
-          <div>
-            <span class='code bold'>content</span> <code class='quiet'>(<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object">object</a>)</code>
-	    option body.
-
-          </div>
-          
-        </div>
-      
-    </div>
-  
-
-  
-
-  
-    
-      <div class='py1 quiet mt1 prose-big'>Returns</div>
-      <code>esb</code>:
-        Builder.
-
-      
-    
-  
-
-  
-
-  
-    <div class='py1 quiet mt1 prose-big'>Example</div>
-    
-      
-      <pre class='p1 overflow-auto round fill-light'>esb().body({
-   <span class="hljs-attr">query</span>: {
-      <span class="hljs-attr">match</span>: {
-         <span class="hljs-attr">message</span>: <span class="hljs-string">'hello'</span>
-      }
-   }   
-})
-.build()</pre>
-    
-  
-
-  
-
-  
-
-  
-</section>
-
-          
-        
-          
-            <section class='p2 mb2 clearfix bg-white minishadow'>
-
-  
-  <div class='clearfix'>
-    
     <h3 class='fl m0' id='indices'>
       indices
     </h3>
@@ -404,7 +467,7 @@ esb().option({
   <p>Add index field to option.</p>
 
 
-  <div class='pre p1 fill-light mt0'>indices(indices: <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Array">array</a>, ignoreUnavailable: bool, allowNoIndices: bool)</div>
+  <div class='pre p1 fill-light mt0'>indices(indices: <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Array">Array</a>, ignoreUnavailable: <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Boolean">Boolean</a>, allowNoIndices: <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Boolean">Boolean</a>)</div>
   
   
 
@@ -421,7 +484,7 @@ esb().option({
       
         <div class='space-bottom0'>
           <div>
-            <span class='code bold'>indices</span> <code class='quiet'>(<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Array">array</a>)</code>
+            <span class='code bold'>indices</span> <code class='quiet'>(<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Array">Array</a>)</code>
 	    multi index
 
           </div>
@@ -430,7 +493,7 @@ esb().option({
       
         <div class='space-bottom0'>
           <div>
-            <span class='code bold'>ignoreUnavailable</span> <code class='quiet'>(bool)</code>
+            <span class='code bold'>ignoreUnavailable</span> <code class='quiet'>(<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Boolean">Boolean</a>)</code>
 	    Whether specified concrete indices should be ignored when unavailable (missing or closed)
 
           </div>
@@ -439,7 +502,7 @@ esb().option({
       
         <div class='space-bottom0'>
           <div>
-            <span class='code bold'>allowNoIndices</span> <code class='quiet'>(bool)</code>
+            <span class='code bold'>allowNoIndices</span> <code class='quiet'>(<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Boolean">Boolean</a>)</code>
 	    Whether to ignore if a wildcard indices expression resolves into no concrete indices. (This includes _all string or when no indices have been specified)
 
           </div>
@@ -561,7 +624,7 @@ esb().option({
   <p>Add query clause to query body</p>
 
 
-  <div class='pre p1 fill-light mt0'>query(queryBody: <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object">object</a>)</div>
+  <div class='pre p1 fill-light mt0'>query(queryBody: <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a>): <a href="#bool">bool</a></div>
   
   
 
@@ -578,9 +641,103 @@ esb().option({
       
         <div class='space-bottom0'>
           <div>
-            <span class='code bold'>queryBody</span> <code class='quiet'>(<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object">object</a>
+            <span class='code bold'>queryBody</span> <code class='quiet'>(<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a>
             = <code>{}</code>)</code>
 	    any query clause
+
+          </div>
+          
+        </div>
+      
+    </div>
+  
+
+  
+
+  
+    
+      <div class='py1 quiet mt1 prose-big'>Returns</div>
+      <code><a href="#bool">bool</a></code>:
+        see below.
+
+      
+    
+  
+
+  
+
+  
+    <div class='py1 quiet mt1 prose-big'>Example</div>
+    
+      
+      <pre class='p1 overflow-auto round fill-light'><span class="hljs-comment">//build body</span>
+esb()
+ .body()
+ .query({
+     <span class="hljs-attr">match</span>: {
+         <span class="hljs-attr">message</span>: <span class="hljs-string">'hello'</span>
+     }
+ })
+ .build()
+<span class="hljs-comment">//result:</span>
+{
+    <span class="hljs-attr">body</span>: {
+         <span class="hljs-attr">query</span>: {
+             <span class="hljs-attr">match</span>: {
+                 <span class="hljs-attr">message</span>: <span class="hljs-string">'hello'</span>
+             }
+        }   
+    }
+}</pre>
+    
+  
+
+  
+
+  
+
+  
+</section>
+
+          
+        
+          
+            <section class='p2 mb2 clearfix bg-white minishadow'>
+
+  
+  <div class='clearfix'>
+    
+    <h3 class='fl m0' id='aggs'>
+      aggs
+    </h3>
+    
+    
+  </div>
+  
+
+  <p>Add aggragation to aggs body</p>
+
+
+  <div class='pre p1 fill-light mt0'>aggs(aggsBody: <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a>)</div>
+  
+  
+
+  
+  
+  
+  
+  
+  
+
+  
+    <div class='py1 quiet mt1 prose-big'>Parameters</div>
+    <div class='prose'>
+      
+        <div class='space-bottom0'>
+          <div>
+            <span class='code bold'>aggsBody</span> <code class='quiet'>(<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a>
+            = <code>{}</code>)</code>
+	    any aggragation body
 
           </div>
           
@@ -601,9 +758,331 @@ esb().option({
       
       <pre class='p1 overflow-auto round fill-light'>esb()
  .body()
- .query({
-     <span class="hljs-attr">match</span>: {
-         <span class="hljs-attr">message</span>: <span class="hljs-string">'hello'</span>
+ .aggs({
+     <span class="hljs-attr">message</span>: {
+         <span class="hljs-attr">terms</span>: {
+             <span class="hljs-attr">field</span>: <span class="hljs-string">'message'</span>
+         }
+     }
+ })
+ .build();
+<span class="hljs-comment">//result:</span>
+{
+     <span class="hljs-attr">body</span>: {
+         <span class="hljs-attr">aggs</span>: {
+             <span class="hljs-attr">message</span>: {
+                 <span class="hljs-attr">terms</span>: {
+                     <span class="hljs-attr">field</span>: <span class="hljs-string">'message'</span>
+                 }
+             }
+         }
+     }
+}</pre>
+    
+  
+
+  
+
+  
+
+  
+</section>
+
+          
+        
+          
+            <section class='p2 mb2 clearfix bg-white minishadow'>
+
+  
+  <div class='clearfix'>
+    
+    <h3 class='fl m0' id='fields'>
+      fields
+    </h3>
+    
+    
+  </div>
+  
+
+  <p><strong><em><a href="https://www.elastic.co/guide/en/elasticsearch/reference/current/search-field-caps.html">https://www.elastic.co/guide/en/elasticsearch/reference/current/search-field-caps.html</a></em></strong></p>
+
+
+  <div class='pre p1 fill-light mt0'>fields(args: ...any)</div>
+  
+  
+
+  
+  
+  
+  
+  
+  
+
+  
+    <div class='py1 quiet mt1 prose-big'>Parameters</div>
+    <div class='prose'>
+      
+        <div class='space-bottom0'>
+          <div>
+            <span class='code bold'>args</span> <code class='quiet'>(...any)</code>
+	    
+          </div>
+          
+        </div>
+      
+    </div>
+  
+
+  
+
+  
+
+  
+
+  
+    <div class='py1 quiet mt1 prose-big'>Example</div>
+    
+      
+      <pre class='p1 overflow-auto round fill-light'>esb()
+ .body()
+ .fields(<span class="hljs-string">'rating'</span>, <span class="hljs-string">'count'</span>)
+ .build()
+<span class="hljs-comment">//result:</span>
+{
+     <span class="hljs-attr">body</span>: {
+         <span class="hljs-attr">fields</span>: [<span class="hljs-string">'rating'</span>, <span class="hljs-string">'count'</span>]
+     }
+}</pre>
+    
+  
+
+  
+
+  
+
+  
+</section>
+
+          
+        
+          
+            <section class='p2 mb2 clearfix bg-white minishadow'>
+
+  
+  <div class='clearfix'>
+    
+    <h3 class='fl m0' id='size'>
+      size
+    </h3>
+    
+    
+  </div>
+  
+
+  <p><strong><em><a href="https://www.elastic.co/guide/en/elasticsearch/reference/current/search-request-from-size.html">https://www.elastic.co/guide/en/elasticsearch/reference/current/search-request-from-size.html</a></em></strong></p>
+
+
+  <div class='pre p1 fill-light mt0'>size(size: <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number">Number</a>)</div>
+  
+  
+
+  
+  
+  
+  
+  
+  
+
+  
+    <div class='py1 quiet mt1 prose-big'>Parameters</div>
+    <div class='prose'>
+      
+        <div class='space-bottom0'>
+          <div>
+            <span class='code bold'>size</span> <code class='quiet'>(<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number">Number</a>
+            = <code>0</code>)</code>
+	    
+          </div>
+          
+        </div>
+      
+    </div>
+  
+
+  
+
+  
+
+  
+
+  
+    <div class='py1 quiet mt1 prose-big'>Example</div>
+    
+      
+      <pre class='p1 overflow-auto round fill-light'>esb()
+ .size(<span class="hljs-number">10</span>)
+ .build()
+<span class="hljs-comment">//result:</span>
+{
+     <span class="hljs-attr">body</span>: {
+         <span class="hljs-attr">size</span>: <span class="hljs-number">10</span>
+     }
+}</pre>
+    
+  
+
+  
+
+  
+
+  
+</section>
+
+          
+        
+          
+            <section class='p2 mb2 clearfix bg-white minishadow'>
+
+  
+  <div class='clearfix'>
+    
+    <h3 class='fl m0' id='from'>
+      from
+    </h3>
+    
+    
+  </div>
+  
+
+  <p><strong><em><a href="https://www.elastic.co/guide/en/elasticsearch/reference/current/search-request-from-size.html">https://www.elastic.co/guide/en/elasticsearch/reference/current/search-request-from-size.html</a></em></strong></p>
+
+
+  <div class='pre p1 fill-light mt0'>from(from: <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number">Number</a>)</div>
+  
+  
+
+  
+  
+  
+  
+  
+  
+
+  
+    <div class='py1 quiet mt1 prose-big'>Parameters</div>
+    <div class='prose'>
+      
+        <div class='space-bottom0'>
+          <div>
+            <span class='code bold'>from</span> <code class='quiet'>(<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number">Number</a>
+            = <code>0</code>)</code>
+	    
+          </div>
+          
+        </div>
+      
+    </div>
+  
+
+  
+
+  
+
+  
+
+  
+    <div class='py1 quiet mt1 prose-big'>Example</div>
+    
+      
+      <pre class='p1 overflow-auto round fill-light'>esb()
+ .from(<span class="hljs-number">1</span>)
+ .build()
+<span class="hljs-comment">//result:</span>
+{
+     <span class="hljs-attr">body</span>: {
+         <span class="hljs-attr">from</span>: <span class="hljs-number">1</span>
+     }
+}</pre>
+    
+  
+
+  
+
+  
+
+  
+</section>
+
+          
+        
+          
+            <section class='p2 mb2 clearfix bg-white minishadow'>
+
+  
+  <div class='clearfix'>
+    
+    <h3 class='fl m0' id='bool'>
+      bool
+    </h3>
+    
+    
+  </div>
+  
+
+  <p>Add bool clause to query body.</p>
+
+
+  <div class='pre p1 fill-light mt0'>bool(boolBody: <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a>): (boolMust | boolNot | boolShould | boolFilter)</div>
+  
+  
+
+  
+  
+  
+  
+  
+  
+
+  
+    <div class='py1 quiet mt1 prose-big'>Parameters</div>
+    <div class='prose'>
+      
+        <div class='space-bottom0'>
+          <div>
+            <span class='code bold'>boolBody</span> <code class='quiet'>(<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a>)</code>
+	    bool clause
+
+          </div>
+          
+        </div>
+      
+    </div>
+  
+
+  
+
+  
+    
+      <div class='py1 quiet mt1 prose-big'>Returns</div>
+      <code>(boolMust | boolNot | boolShould | boolFilter)</code>:
+        see below.
+
+      
+    
+  
+
+  
+
+  
+    <div class='py1 quiet mt1 prose-big'>Example</div>
+    
+      
+      <pre class='p1 overflow-auto round fill-light'>esb()
+ .body()
+ .query()
+ .bool({
+     <span class="hljs-attr">must</span>: {
+         <span class="hljs-string">"term"</span> : { <span class="hljs-string">"user"</span> : <span class="hljs-string">"kimchy"</span> }
      }
  })
  .build()</pre>

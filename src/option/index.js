@@ -6,9 +6,9 @@ export default (body = {}) => ( {
     /**
      * Add index field to option.
      * 
-     * @param {array} indices multi index
-     * @param {bool} ignoreUnavailable Whether specified concrete indices should be ignored when unavailable (missing or closed)
-     * @param {bool} allowNoIndices Whether to ignore if a wildcard indices expression resolves into no concrete indices. (This includes _all string or when no indices have been specified)
+     * @param {Array} indices multi index
+     * @param {Boolean} ignoreUnavailable Whether specified concrete indices should be ignored when unavailable (missing or closed)
+     * @param {Boolean} allowNoIndices Whether to ignore if a wildcard indices expression resolves into no concrete indices. (This includes _all string or when no indices have been specified)
      * @example
      * esb()
      *  .options()
@@ -23,7 +23,6 @@ export default (body = {}) => ( {
     /**
      * Add type field to option
      * 
-     * @param {array, params} type multi type
      * @example
      * esb()
      *  .options()

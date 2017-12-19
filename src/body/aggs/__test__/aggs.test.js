@@ -4,15 +4,19 @@ describe('aggs', () => {
     it('build with custom aggs', () => {
         //Arrange/Act
         const aggs = aggsBuilder({
-            terms: {
-                field: 'message'
+            message: {
+                terms: {
+                    field: 'message'
+                }
             }
         }).getAggs();
         //Assert
         expect(aggs).toEqual({
             aggs: {
-                terms: {
-                    field: 'message'
+                message: {
+                    terms: {
+                        field: 'message'
+                    }
                 }
             }
         });

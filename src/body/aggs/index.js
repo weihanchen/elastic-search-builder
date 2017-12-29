@@ -1,8 +1,7 @@
 //TODO: refactoring
 
 export default (aggsBody = {}) => {
-    let name;
-    for (name in aggsBody) break;
+    const name = Object.keys(aggsBody).shift();
     const res = { aggs: aggsBody };
     let currentNode = aggsBody[name] || aggsBody;
     let lastNode = currentNode;
@@ -17,7 +16,7 @@ export default (aggsBody = {}) => {
         subAggs(aggsBody = {}) {
             currentNode = lastNode;
             Object.assign(currentNode, { aggs: aggsBody});
-            currentNode = aggsBody[name] || aggsBody;
+            currentNode =  aggsBody;
             return this;
         },
         forkAggs() {

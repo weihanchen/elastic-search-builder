@@ -1,6 +1,14 @@
 import optionBuilder from '../';
 
 describe('type', () => {
+    it('build with empty type', () => {
+        //Arrange/Act
+        const option = optionBuilder().type().getOption();
+        //Assert
+        expect(option).toEqual({
+            type: ""
+        });
+    });
     it('build with string type', () => {
         //Arrange/Act
         const option = optionBuilder().type('employee').getOption();

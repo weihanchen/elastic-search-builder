@@ -225,7 +225,7 @@ describe('aggs', () => {
                                     "terms": {
                                         "field": "name"
                                     }
-                                    
+
                                 },
                                 "by_language": {
                                     "terms": {
@@ -237,6 +237,49 @@ describe('aggs', () => {
                                                 "field": "name"
                                             }
                                         }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        });
+    });
+    it('build with fork/merge side effect', () => {
+        //Arrange/Act
+        const aggs = aggsBuilder()
+            .appendAggs('by_gender', 'terms', {
+                "field": "gender"
+            })
+            .subAggs()
+            .forkAggs()
+            .appendAggs('by_city', 'terms', {
+                "field": "city"
+            })
+            .subAggs()
+            .appendAggs('all_name', 'terms', {
+                "field": "name"
+            })
+            .mergeAggs()
+            .mergeAggs()
+            .getAggs();
+        //Assert
+        expect(aggs).toEqual({
+            "aggs": {
+                "by_gender": {
+                    "terms": {
+                        "field": "gender"
+                    },
+                    "aggs": {
+                        "by_city": {
+                            "terms": {
+                                "field": "city"
+                            },
+                            "aggs": {
+                                "all_name": {
+                                    "terms": {
+                                        "field": "name"
                                     }
                                 }
                             }

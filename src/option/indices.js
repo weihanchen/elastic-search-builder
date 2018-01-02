@@ -1,4 +1,4 @@
-export default (indices = [], ignoreUnavailable = false, allowNoIndices = false) => {
+export default (indices, ignoreUnavailable = false, allowNoIndices = false) => {
     const index = indices.join(',');
     return {
         getIndex: () => ({

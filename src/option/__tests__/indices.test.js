@@ -1,6 +1,16 @@
 import optionBuilder from '../';
 
 describe('indices', () => {
+    it('build with empty indices', () => {
+        //Arrange/Act
+        const option = optionBuilder().indices().getOption();
+        //Assert
+        expect(option).toEqual({
+            index: '',
+            ignoreUnavailable: false,
+            allowNoIndices: false
+        });
+    });
     it('build with basic indices', () => {
         //Arrange/Act
         const indices = ['2017.01.01', '2017.01.02'];

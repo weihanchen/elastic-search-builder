@@ -135,9 +135,89 @@
               
                 
                 <li><a
+                  href='#appendaggs'
+                  class="">
+                  appendAggs
+                  
+                </a>
+                
+                </li>
+              
+                
+                <li><a
+                  href='#subaggs'
+                  class="">
+                  subAggs
+                  
+                </a>
+                
+                </li>
+              
+                
+                <li><a
+                  href='#forkaggs'
+                  class="">
+                  forkAggs
+                  
+                </a>
+                
+                </li>
+              
+                
+                <li><a
+                  href='#mergeaggs'
+                  class="">
+                  mergeAggs
+                  
+                </a>
+                
+                </li>
+              
+                
+                <li><a
                   href='#bool'
                   class="">
                   bool
+                  
+                </a>
+                
+                </li>
+              
+                
+                <li><a
+                  href='#boolmust'
+                  class="">
+                  boolMust
+                  
+                </a>
+                
+                </li>
+              
+                
+                <li><a
+                  href='#boolnot'
+                  class="">
+                  boolNot
+                  
+                </a>
+                
+                </li>
+              
+                
+                <li><a
+                  href='#boolshould'
+                  class="">
+                  boolShould
+                  
+                </a>
+                
+                </li>
+              
+                
+                <li><a
+                  href='#boolfilter'
+                  class="">
+                  boolFilter
                   
                 </a>
                 
@@ -715,7 +795,7 @@ esb()
   </div>
   
 
-  <p>Add aggragation to aggs body</p>
+  <p>Add aggregation to aggs body</p>
 
 
   <div class='pre p1 fill-light mt0'>aggs(aggsBody: <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a>)</div>
@@ -737,7 +817,7 @@ esb()
           <div>
             <span class='code bold'>aggsBody</span> <code class='quiet'>(<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a>
             = <code>{}</code>)</code>
-	    any aggragation body
+	    any aggregation body
 
           </div>
           
@@ -1021,6 +1101,357 @@ esb()
   
   <div class='clearfix'>
     
+    <h3 class='fl m0' id='appendaggs'>
+      appendAggs
+    </h3>
+    
+    
+  </div>
+  
+
+  <p>Add an aggregation clause to the aggs body.</p>
+
+
+  <div class='pre p1 fill-light mt0'>appendAggs(name: <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String">string</a>, type: <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String">string</a>, body: <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a>)</div>
+  
+  
+
+  
+  
+  
+  
+  
+  
+
+  
+    <div class='py1 quiet mt1 prose-big'>Parameters</div>
+    <div class='prose'>
+      
+        <div class='space-bottom0'>
+          <div>
+            <span class='code bold'>name</span> <code class='quiet'>(<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String">string</a>)</code>
+	    Name of the aggregation.
+
+          </div>
+          
+        </div>
+      
+        <div class='space-bottom0'>
+          <div>
+            <span class='code bold'>type</span> <code class='quiet'>(<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String">string</a>)</code>
+	    Name of the aggregation type, such as 
+<code>'sum'</code>
+ or 
+<code>'terms'</code>
+.
+
+          </div>
+          
+        </div>
+      
+        <div class='space-bottom0'>
+          <div>
+            <span class='code bold'>body</span> <code class='quiet'>(<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a>
+            = <code>{}</code>)</code>
+	    Options to include in the aggregation.
+
+          </div>
+          
+        </div>
+      
+    </div>
+  
+
+  
+
+  
+
+  
+
+  
+    <div class='py1 quiet mt1 prose-big'>Example</div>
+    
+      
+      <pre class='p1 overflow-auto round fill-light'>esb()
+ .body()
+ .aggs()
+ .appendAggs(<span class="hljs-string">'message'</span>, <span class="hljs-string">'terms'</span>, {
+     <span class="hljs-attr">field</span>: <span class="hljs-string">'message'</span>
+ })
+ .build();</pre>
+    
+  
+
+  
+
+  
+
+  
+</section>
+
+          
+        
+          
+            <section class='p2 mb2 clearfix bg-white minishadow'>
+
+  
+  <div class='clearfix'>
+    
+    <h3 class='fl m0' id='subaggs'>
+      subAggs
+    </h3>
+    
+    
+  </div>
+  
+
+  <p>Add aggregation to sub aggs body.</p>
+
+
+  <div class='pre p1 fill-light mt0'>subAggs(aggsBody: <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a>)</div>
+  
+  
+
+  
+  
+  
+  
+  
+  
+
+  
+    <div class='py1 quiet mt1 prose-big'>Parameters</div>
+    <div class='prose'>
+      
+        <div class='space-bottom0'>
+          <div>
+            <span class='code bold'>aggsBody</span> <code class='quiet'>(<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a>
+            = <code>{}</code>)</code>
+	    
+          </div>
+          
+        </div>
+      
+    </div>
+  
+
+  
+
+  
+
+  
+
+  
+    <div class='py1 quiet mt1 prose-big'>Example</div>
+    
+      
+      <pre class='p1 overflow-auto round fill-light'>esb()
+ .body()
+ .aggs()
+ .appendAggs(<span class="hljs-string">'message'</span>, <span class="hljs-string">'terms'</span>, {
+     <span class="hljs-attr">field</span>: <span class="hljs-string">'message'</span>
+ })
+ .subAggs()
+ .appendAggs(<span class="hljs-string">'name'</span>, <span class="hljs-string">'terms'</span>, {  
+     <span class="hljs-attr">field</span>: <span class="hljs-string">'name'</span>
+ })
+ .build();
+<span class="hljs-comment">//result</span>
+{
+ <span class="hljs-string">"body"</span>: {
+     <span class="hljs-string">"aggs"</span>: {
+         <span class="hljs-string">"message"</span>: {
+             <span class="hljs-string">"terms"</span>: {
+                 <span class="hljs-string">"field"</span>: <span class="hljs-string">"message"</span>
+             },
+             <span class="hljs-string">"aggs"</span>: {
+                 <span class="hljs-string">"name"</span>: {
+                     <span class="hljs-string">"terms"</span>: {
+                         <span class="hljs-string">"field"</span>: <span class="hljs-string">"name"</span>
+                     }
+                 }
+             }
+         }
+     }
+ }
+}</pre>
+    
+  
+
+  
+
+  
+
+  
+</section>
+
+          
+        
+          
+            <section class='p2 mb2 clearfix bg-white minishadow'>
+
+  
+  <div class='clearfix'>
+    
+    <h3 class='fl m0' id='forkaggs'>
+      forkAggs
+    </h3>
+    
+    
+  </div>
+  
+
+  <p>fork from current aggs node</p>
+
+
+  <div class='pre p1 fill-light mt0'>forkAggs()</div>
+  
+  
+
+  
+  
+  
+  
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    <div class='py1 quiet mt1 prose-big'>Example</div>
+    
+      
+      <pre class='p1 overflow-auto round fill-light'>esb()
+ .body()
+ .aggs()
+ .appendAggs(<span class="hljs-string">'by_gender'</span>, <span class="hljs-string">'terms'</span>, {
+      <span class="hljs-string">"field"</span>: <span class="hljs-string">"gender"</span>
+  })
+ .subAggs()
+ .forkAggs()
+ .appendAggs(<span class="hljs-string">'by_city'</span>, <span class="hljs-string">'terms'</span>, {
+     <span class="hljs-string">"field"</span>: <span class="hljs-string">"city"</span>
+ })
+ .subAggs()
+ .appendAggs(<span class="hljs-string">'all_name'</span>, <span class="hljs-string">'terms'</span>, {
+     <span class="hljs-string">"field"</span>: <span class="hljs-string">"name"</span>
+ })
+ .mergeAggs()
+ .appendAggs(<span class="hljs-string">'by_language'</span>, <span class="hljs-string">'terms'</span>, {
+     <span class="hljs-string">"field"</span>: <span class="hljs-string">"language"</span>
+ })
+ .subAggs()
+ .appendAggs(<span class="hljs-string">'all_name'</span>, <span class="hljs-string">'terms'</span>, {
+     <span class="hljs-string">"field"</span>: <span class="hljs-string">"name"</span>
+ })
+ .build()
+<span class="hljs-comment">//result:</span>
+{
+  <span class="hljs-string">"aggs"</span>: {
+      <span class="hljs-string">"by_gender"</span>: {
+          <span class="hljs-string">"terms"</span>: {
+              <span class="hljs-string">"field"</span>: <span class="hljs-string">"gender"</span>
+          },
+          <span class="hljs-string">"aggs"</span>: {
+              <span class="hljs-string">"by_city"</span>: {
+                  <span class="hljs-string">"terms"</span>: {
+                      <span class="hljs-string">"field"</span>: <span class="hljs-string">"city"</span>
+                  },
+                  <span class="hljs-string">"aggs"</span>: {
+                      <span class="hljs-string">"all_name"</span>: {
+                          <span class="hljs-string">"terms"</span>: {
+                              <span class="hljs-string">"field"</span>: <span class="hljs-string">"name"</span>
+                          }
+                      }
+                  }
+              },
+              <span class="hljs-string">"by_language"</span>: {
+                  <span class="hljs-string">"terms"</span>: {
+                      <span class="hljs-string">"field"</span>: <span class="hljs-string">"language"</span>
+                  },
+                  <span class="hljs-string">"aggs"</span>: {
+                      <span class="hljs-string">"all_name"</span>: {
+                          <span class="hljs-string">"terms"</span>: {
+                              <span class="hljs-string">"field"</span>: <span class="hljs-string">"name"</span>
+                          }
+                      }
+                  }
+              }
+          }
+      }
+  }
+}</pre>
+    
+  
+
+  
+
+  
+
+  
+</section>
+
+          
+        
+          
+            <section class='p2 mb2 clearfix bg-white minishadow'>
+
+  
+  <div class='clearfix'>
+    
+    <h3 class='fl m0' id='mergeaggs'>
+      mergeAggs
+    </h3>
+    
+    
+  </div>
+  
+
+  <p>merge to forked aggs</p>
+
+
+  <div class='pre p1 fill-light mt0'>mergeAggs()</div>
+  
+  
+
+  
+  
+  
+  
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+</section>
+
+          
+        
+          
+            <section class='p2 mb2 clearfix bg-white minishadow'>
+
+  
+  <div class='clearfix'>
+    
     <h3 class='fl m0' id='bool'>
       bool
     </h3>
@@ -1032,7 +1463,7 @@ esb()
   <p>Add bool clause to query body.</p>
 
 
-  <div class='pre p1 fill-light mt0'>bool(boolBody: <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a>): (boolMust | boolNot | boolShould | boolFilter)</div>
+  <div class='pre p1 fill-light mt0'>bool(boolBody: <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a>): (<a href="#boolmust">boolMust</a> | <a href="#boolnot">boolNot</a> | <a href="#boolshould">boolShould</a> | <a href="#boolfilter">boolFilter</a>)</div>
   
   
 
@@ -1064,7 +1495,7 @@ esb()
   
     
       <div class='py1 quiet mt1 prose-big'>Returns</div>
-      <code>(boolMust | boolNot | boolShould | boolFilter)</code>:
+      <code>(<a href="#boolmust">boolMust</a> | <a href="#boolnot">boolNot</a> | <a href="#boolshould">boolShould</a> | <a href="#boolfilter">boolFilter</a>)</code>:
         see below.
 
       
@@ -1113,6 +1544,374 @@ esb()
              }
          }
      }
+}</pre>
+    
+  
+
+  
+
+  
+
+  
+</section>
+
+          
+        
+          
+            <section class='p2 mb2 clearfix bg-white minishadow'>
+
+  
+  <div class='clearfix'>
+    
+    <h3 class='fl m0' id='boolmust'>
+      boolMust
+    </h3>
+    
+    
+  </div>
+  
+
+  <p>The clause (query) must appear in matching documents and will contribute to the score.</p>
+
+
+  <div class='pre p1 fill-light mt0'>boolMust(args: ...any)</div>
+  
+  
+
+  
+  
+  
+  
+  
+  
+
+  
+    <div class='py1 quiet mt1 prose-big'>Parameters</div>
+    <div class='prose'>
+      
+        <div class='space-bottom0'>
+          <div>
+            <span class='code bold'>args</span> <code class='quiet'>(...any)</code>
+	    
+          </div>
+          
+        </div>
+      
+    </div>
+  
+
+  
+
+  
+
+  
+
+  
+    <div class='py1 quiet mt1 prose-big'>Example</div>
+    
+      
+      <pre class='p1 overflow-auto round fill-light'>esb()
+ .body()
+ .query()
+ .bool()
+ .boolMust({
+     <span class="hljs-attr">term</span> : { <span class="hljs-attr">user</span> : <span class="hljs-string">'kimchy'</span> }
+ })
+ .build()
+
+<span class="hljs-comment">//result</span>
+{
+ <span class="hljs-string">"body"</span>: {
+     <span class="hljs-string">"query"</span>: {
+         <span class="hljs-string">"bool"</span>: {
+             <span class="hljs-string">"must"</span>: [
+                 {
+                     <span class="hljs-string">"term"</span> : { 
+                         <span class="hljs-string">"user"</span> : <span class="hljs-string">'kimchy'</span> 
+                     }
+                 }
+             ]
+         }
+     }
+ }
+}</pre>
+    
+  
+
+  
+
+  
+
+  
+</section>
+
+          
+        
+          
+            <section class='p2 mb2 clearfix bg-white minishadow'>
+
+  
+  <div class='clearfix'>
+    
+    <h3 class='fl m0' id='boolnot'>
+      boolNot
+    </h3>
+    
+    
+  </div>
+  
+
+  <p>The clause (query) must not appear in the matching documents.
+Clauses are executed in filter context meaning that scoring is ignored and clauses are considered for caching.
+Because scoring is ignored, a score of 0 for all documents is returned.</p>
+
+
+  <div class='pre p1 fill-light mt0'>boolNot(args: ...any)</div>
+  
+  
+
+  
+  
+  
+  
+  
+  
+
+  
+    <div class='py1 quiet mt1 prose-big'>Parameters</div>
+    <div class='prose'>
+      
+        <div class='space-bottom0'>
+          <div>
+            <span class='code bold'>args</span> <code class='quiet'>(...any)</code>
+	    
+          </div>
+          
+        </div>
+      
+    </div>
+  
+
+  
+
+  
+
+  
+
+  
+    <div class='py1 quiet mt1 prose-big'>Example</div>
+    
+      
+      <pre class='p1 overflow-auto round fill-light'>esb()
+ .body()
+ .query()
+ .bool()
+ .boolNot({
+     <span class="hljs-attr">term</span> : { <span class="hljs-attr">user</span> : <span class="hljs-string">'kimchy'</span> }
+ })
+ .build()
+
+<span class="hljs-comment">//result</span>
+{
+ <span class="hljs-string">"body"</span>: {
+     <span class="hljs-string">"query"</span>: {
+         <span class="hljs-string">"bool"</span>: {
+             <span class="hljs-string">"must_not"</span>: [
+                 {
+                     <span class="hljs-string">"term"</span> : { 
+                         <span class="hljs-string">"user"</span> : <span class="hljs-string">'kimchy'</span> 
+                     }
+                 }
+             ]
+         }
+     }
+ }
+}</pre>
+    
+  
+
+  
+
+  
+
+  
+</section>
+
+          
+        
+          
+            <section class='p2 mb2 clearfix bg-white minishadow'>
+
+  
+  <div class='clearfix'>
+    
+    <h3 class='fl m0' id='boolshould'>
+      boolShould
+    </h3>
+    
+    
+  </div>
+  
+
+  <p>The clause (query) should appear in the matching document.
+If the bool query is in a query context and has a must or filter clause then a document will match the bool query even if none of the should queries match.
+In this case these clauses are only used to influence the score.
+If the bool query is a filter context or has neither must or filter then at least one of the should queries must match a document for it to match the bool query.
+This behavior may be explicitly controlled by settings the minimum_should_match parameter.</p>
+
+
+  <div class='pre p1 fill-light mt0'>boolShould(args: ...any)</div>
+  
+  
+
+  
+  
+  
+  
+  
+  
+
+  
+    <div class='py1 quiet mt1 prose-big'>Parameters</div>
+    <div class='prose'>
+      
+        <div class='space-bottom0'>
+          <div>
+            <span class='code bold'>args</span> <code class='quiet'>(...any)</code>
+	    
+          </div>
+          
+        </div>
+      
+    </div>
+  
+
+  
+
+  
+
+  
+
+  
+    <div class='py1 quiet mt1 prose-big'>Example</div>
+    
+      
+      <pre class='p1 overflow-auto round fill-light'>esb()
+ .body()
+ .query()
+ .bool()
+ .boolShould({
+     <span class="hljs-attr">term</span> : { <span class="hljs-attr">user</span> : <span class="hljs-string">'kimchy'</span> }
+ })
+ .build()
+
+<span class="hljs-comment">//result</span>
+{
+ <span class="hljs-string">"body"</span>: {
+     <span class="hljs-string">"query"</span>: {
+         <span class="hljs-string">"bool"</span>: {
+             <span class="hljs-string">"should"</span>: [
+                 {
+                     <span class="hljs-string">"term"</span> : { 
+                         <span class="hljs-string">"user"</span> : <span class="hljs-string">'kimchy'</span> 
+                     }
+                 }
+             ]
+         }
+     }
+ }
+}</pre>
+    
+  
+
+  
+
+  
+
+  
+</section>
+
+          
+        
+          
+            <section class='p2 mb2 clearfix bg-white minishadow'>
+
+  
+  <div class='clearfix'>
+    
+    <h3 class='fl m0' id='boolfilter'>
+      boolFilter
+    </h3>
+    
+    
+  </div>
+  
+
+  <p>The clause (query) must appear in matching documents.
+However unlike must the score of the query will be ignored.
+Filter clauses are executed in filter context, meaning that scoring is ignored and clauses are considered for caching.</p>
+
+
+  <div class='pre p1 fill-light mt0'>boolFilter(args: ...any)</div>
+  
+  
+
+  
+  
+  
+  
+  
+  
+
+  
+    <div class='py1 quiet mt1 prose-big'>Parameters</div>
+    <div class='prose'>
+      
+        <div class='space-bottom0'>
+          <div>
+            <span class='code bold'>args</span> <code class='quiet'>(...any)</code>
+	    
+          </div>
+          
+        </div>
+      
+    </div>
+  
+
+  
+
+  
+
+  
+
+  
+    <div class='py1 quiet mt1 prose-big'>Example</div>
+    
+      
+      <pre class='p1 overflow-auto round fill-light'>esb()
+ .body()
+ .query()
+ .bool()
+ .boolFilter({
+     <span class="hljs-attr">term</span> : { <span class="hljs-attr">user</span> : <span class="hljs-string">'kimchy'</span> }
+ })
+ .build()
+
+<span class="hljs-comment">//result</span>
+{
+ <span class="hljs-string">"body"</span>: {
+     <span class="hljs-string">"query"</span>: {
+         <span class="hljs-string">"bool"</span>: {
+             <span class="hljs-string">"filter"</span>: [
+                 {
+                     <span class="hljs-string">"term"</span> : { 
+                         <span class="hljs-string">"user"</span> : <span class="hljs-string">'kimchy'</span> 
+                     }
+                 }
+             ]
+         }
+     }
+ }
 }</pre>
     
   

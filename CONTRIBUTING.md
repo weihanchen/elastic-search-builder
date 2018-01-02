@@ -58,36 +58,36 @@ npm run test
 
 You may need to rebase your branch on top of the latest version of the master branch. To do so is simple:
 
-1. checkout master
+* checkout master
 
 ```sh
 git checkout master
 ```
 
-2. Pull the latest changes from the server
+* Pull the latest changes from the server
 
 ```sh
 git pull upstream master
 ```
 
-3. Switch back to your feature branch
+* Switch back to your feature branch
 
 ```sh
 git checkout my-feature-branch
 ```
 
-4. Rebase it on top of the master branch (there might be conflicts you'll need to resolve)
+* Rebase it on top of the master branch (there might be conflicts you'll need to resolve)
 
 ```sh
 git rebase master -i
 ```
 
-5. Push the changes into your remote repository
+* Push the changes into your remote repository
 
 ```sh
 git push
 ```
 
-6. Send a pull request to `elastic-search-builder:master`
+* Send a pull request to `elastic-search-builder:master`
 
 That's it! Thank you for contributing!

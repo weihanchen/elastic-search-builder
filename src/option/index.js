@@ -12,10 +12,10 @@ export default (body = {}) => ( {
      * @example
      * esb()
      *  .options()
-     *  .indices(['2016.01.01'], true, true, 'open')
+     *  .indices(['2016.01.01'], true, true)
      *  .build()
      */
-    indices(indices, ignoreUnavailable, allowNoIndices) {
+    indices(indices = [], ignoreUnavailable, allowNoIndices) {
         Object.assign(this, indicesBuilder(indices, ignoreUnavailable, allowNoIndices));
         Object.assign(body, this.getIndex());
         return this;

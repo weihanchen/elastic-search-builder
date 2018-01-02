@@ -13,7 +13,15 @@
 -   [fields](#fields)
 -   [size](#size)
 -   [from](#from)
+-   [appendAggs](#appendaggs)
+-   [subAggs](#subaggs)
+-   [forkAggs](#forkaggs)
+-   [mergeAggs](#mergeaggs)
 -   [bool](#bool)
+-   [boolMust](#boolmust)
+-   [boolNot](#boolnot)
+-   [boolShould](#boolshould)
+-   [boolFilter](#boolfilter)
 
 ## esBuilder
 
@@ -170,11 +178,11 @@ Returns **[bool](#bool)** see below.
 
 ## aggs
 
-Add aggragation to aggs body
+Add aggregation to aggs body
 
 **Parameters**
 
--   `aggsBody` **[Object](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object)** any aggragation body (optional, default `{}`)
+-   `aggsBody` **[Object](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object)** any aggregation body (optional, default `{}`)
 
 **Examples**
 
@@ -270,6 +278,144 @@ esb()
 }
 ```
 
+## appendAggs
+
+Add an aggregation clause to the aggs body.
+
+**Parameters**
+
+-   `name` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** Name of the aggregation.
+-   `type` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** Name of the aggregation type, such as `'sum'` or `'terms'`.
+-   `body` **[Object](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object)** Options to include in the aggregation. (optional, default `{}`)
+
+**Examples**
+
+```javascript
+esb()
+ .body()
+ .aggs()
+ .appendAggs('message', 'terms', {
+     field: 'message'
+ })
+ .build();
+```
+
+## subAggs
+
+Add aggregation to sub aggs body.
+
+**Parameters**
+
+-   `aggsBody` **[Object](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object)**  (optional, default `{}`)
+
+**Examples**
+
+```javascript
+esb()
+ .body()
+ .aggs()
+ .appendAggs('message', 'terms', {
+     field: 'message'
+ })
+ .subAggs()
+ .appendAggs('name', 'terms', {  
+     field: 'name'
+ })
+ .build();
+//result
+{
+ "body": {
+     "aggs": {
+         "message": {
+             "terms": {
+                 "field": "message"
+             },
+             "aggs": {
+                 "name": {
+                     "terms": {
+                         "field": "name"
+                     }
+                 }
+             }
+         }
+     }
+ }
+}
+```
+
+## forkAggs
+
+fork from current aggs node
+
+**Examples**
+
+```javascript
+esb()
+ .body()
+ .aggs()
+ .appendAggs('by_gender', 'terms', {
+      "field": "gender"
+  })
+ .subAggs()
+ .forkAggs()
+ .appendAggs('by_city', 'terms', {
+     "field": "city"
+ })
+ .subAggs()
+ .appendAggs('all_name', 'terms', {
+     "field": "name"
+ })
+ .mergeAggs()
+ .appendAggs('by_language', 'terms', {
+     "field": "language"
+ })
+ .subAggs()
+ .appendAggs('all_name', 'terms', {
+     "field": "name"
+ })
+ .build()
+//result:
+{
+  "aggs": {
+      "by_gender": {
+          "terms": {
+              "field": "gender"
+          },
+          "aggs": {
+              "by_city": {
+                  "terms": {
+                      "field": "city"
+                  },
+                  "aggs": {
+                      "all_name": {
+                          "terms": {
+                              "field": "name"
+                          }
+                      }
+                  }
+              },
+              "by_language": {
+                  "terms": {
+                      "field": "language"
+                  },
+                  "aggs": {
+                      "all_name": {
+                          "terms": {
+                              "field": "name"
+                          }
+                      }
+                  }
+              }
+          }
+      }
+  }
+}
+```
+
+## mergeAggs
+
+merge to forked aggs
+
 ## bool
 
 Add bool clause to query body.
@@ -320,4 +466,164 @@ esb()
 }
 ```
 
-Returns **(boolMust | boolNot | boolShould | boolFilter)** see below.
+Returns **([boolMust](#boolmust) \| [boolNot](#boolnot) \| [boolShould](#boolshould) \| [boolFilter](#boolfilter))** see below.
+
+## boolMust
+
+The clause (query) must appear in matching documents and will contribute to the score.
+
+**Parameters**
+
+-   `args` **...any** 
+
+**Examples**
+
+```javascript
+esb()
+ .body()
+ .query()
+ .bool()
+ .boolMust({
+     term : { user : 'kimchy' }
+ })
+ .build()
+
+//result
+{
+ "body": {
+     "query": {
+         "bool": {
+             "must": [
+                 {
+                     "term" : { 
+                         "user" : 'kimchy' 
+                     }
+                 }
+             ]
+         }
+     }
+ }
+}
+```
+
+## boolNot
+
+The clause (query) must not appear in the matching documents. 
+Clauses are executed in filter context meaning that scoring is ignored and clauses are considered for caching. 
+Because scoring is ignored, a score of 0 for all documents is returned.
+
+**Parameters**
+
+-   `args` **...any** 
+
+**Examples**
+
+```javascript
+esb()
+ .body()
+ .query()
+ .bool()
+ .boolNot({
+     term : { user : 'kimchy' }
+ })
+ .build()
+
+//result
+{
+ "body": {
+     "query": {
+         "bool": {
+             "must_not": [
+                 {
+                     "term" : { 
+                         "user" : 'kimchy' 
+                     }
+                 }
+             ]
+         }
+     }
+ }
+}
+```
+
+## boolShould
+
+The clause (query) should appear in the matching document. 
+If the bool query is in a query context and has a must or filter clause then a document will match the bool query even if none of the should queries match. 
+In this case these clauses are only used to influence the score. 
+If the bool query is a filter context or has neither must or filter then at least one of the should queries must match a document for it to match the bool query. 
+This behavior may be explicitly controlled by settings the minimum_should_match parameter.
+
+**Parameters**
+
+-   `args` **...any** 
+
+**Examples**
+
+```javascript
+esb()
+ .body()
+ .query()
+ .bool()
+ .boolShould({
+     term : { user : 'kimchy' }
+ })
+ .build()
+
+//result
+{
+ "body": {
+     "query": {
+         "bool": {
+             "should": [
+                 {
+                     "term" : { 
+                         "user" : 'kimchy' 
+                     }
+                 }
+             ]
+         }
+     }
+ }
+}
+```
+
+## boolFilter
+
+The clause (query) must appear in matching documents. 
+However unlike must the score of the query will be ignored. 
+Filter clauses are executed in filter context, meaning that scoring is ignored and clauses are considered for caching.
+
+**Parameters**
+
+-   `args` **...any** 
+
+**Examples**
+
+```javascript
+esb()
+ .body()
+ .query()
+ .bool()
+ .boolFilter({
+     term : { user : 'kimchy' }
+ })
+ .build()
+
+//result
+{
+ "body": {
+     "query": {
+         "bool": {
+             "filter": [
+                 {
+                     "term" : { 
+                         "user" : 'kimchy' 
+                     }
+                 }
+             ]
+         }
+     }
+ }
+}
+```

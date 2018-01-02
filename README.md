@@ -77,7 +77,7 @@ esb()
 // }
 ```
 
-## Nested aggregation
+## Aggregation
 ### basic usage
 
 ```javascript

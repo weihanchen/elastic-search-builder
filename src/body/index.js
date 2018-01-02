@@ -33,8 +33,8 @@ export default (body = {}) => ({
         return this;
     },
     /**
-     * Add aggragation to aggs body
-     * @param {Object} aggsBody any aggragation body
+     * Add aggregation to aggs body
+     * @param {Object} aggsBody any aggregation body
      * @example
      * esb()
      *  .body()

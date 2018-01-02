@@ -90,6 +90,10 @@ esb()
   .appendAggs('all_gender', 'terms', {
       "field": "gender"
    })
+   .subAggs()
+   .appendAggs('all_city', 'terms', {
+      "field": "city"
+   })
    .build()
 
 // {
@@ -102,7 +106,14 @@ esb()
 //         "all_gender": {
 //           "terms": {
 //             "field": "gender"
-//           }
+//           },
+//           "aggs": {
+//               "all_city": {
+//                  "terms": {
+//                       "field": "city"
+//                   }
+//                }
+//            }
 //         }
 //       }
 //     }

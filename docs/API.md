@@ -112,7 +112,7 @@ Add index field to option.
 
 **Parameters**
 
--   `indices` **[Array](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Array)** multi index
+-   `indices` **[Array](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Array)** multi index (optional, default `[]`)
 -   `ignoreUnavailable` **[boolean](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Boolean)** Whether specified concrete indices should be ignored when unavailable (missing or closed)
 -   `allowNoIndices` **[boolean](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Boolean)** Whether to ignore if a wildcard indices expression resolves into no concrete indices. (This includes \_all string or when no indices have been specified)
 
@@ -121,7 +121,7 @@ Add index field to option.
 ```javascript
 esb()
  .options()
- .indices(['2016.01.01'], true, true, 'open')
+ .indices(['2016.01.01'], true, true)
  .build()
 ```
 
@@ -211,6 +211,8 @@ esb()
 }
 ```
 
+Returns **([appendAggs](#appendaggs) \| [subAggs](#subaggs) \| [forkAggs](#forkaggs) \| [mergeAggs](#mergeaggs))** see below.
+
 ## fields
 
 **_<https://www.elastic.co/guide/en/elasticsearch/reference/current/search-field-caps.html>_**
@@ -286,7 +288,7 @@ Add an aggregation clause to the aggs body.
 
 -   `name` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** Name of the aggregation.
 -   `type` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** Name of the aggregation type, such as `'sum'` or `'terms'`.
--   `body` **[Object](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object)** Options to include in the aggregation. (optional, default `{}`)
+-   `body` **[Object](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object)** Options to include in the aggregation.
 
 **Examples**
 

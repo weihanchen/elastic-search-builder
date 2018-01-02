@@ -564,7 +564,8 @@ esb().option({
       
         <div class='space-bottom0'>
           <div>
-            <span class='code bold'>indices</span> <code class='quiet'>(<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Array">Array</a>)</code>
+            <span class='code bold'>indices</span> <code class='quiet'>(<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Array">Array</a>
+            = <code>[]</code>)</code>
 	    multi index
 
           </div>
@@ -604,7 +605,7 @@ esb().option({
       
       <pre class='p1 overflow-auto round fill-light'>esb()
  .options()
- .indices([<span class="hljs-string">'2016.01.01'</span>], <span class="hljs-literal">true</span>, <span class="hljs-literal">true</span>, <span class="hljs-string">'open'</span>)
+ .indices([<span class="hljs-string">'2016.01.01'</span>], <span class="hljs-literal">true</span>, <span class="hljs-literal">true</span>)
  .build()</pre>
     
   
@@ -798,7 +799,7 @@ esb()
   <p>Add aggregation to aggs body</p>
 
 
-  <div class='pre p1 fill-light mt0'>aggs(aggsBody: <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a>)</div>
+  <div class='pre p1 fill-light mt0'>aggs(aggsBody: <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a>): (<a href="#appendaggs">appendAggs</a> | <a href="#subaggs">subAggs</a> | <a href="#forkaggs">forkAggs</a> | <a href="#mergeaggs">mergeAggs</a>)</div>
   
   
 
@@ -828,6 +829,14 @@ esb()
 
   
 
+  
+    
+      <div class='py1 quiet mt1 prose-big'>Returns</div>
+      <code>(<a href="#appendaggs">appendAggs</a> | <a href="#subaggs">subAggs</a> | <a href="#forkaggs">forkAggs</a> | <a href="#mergeaggs">mergeAggs</a>)</code>:
+        see below.
+
+      
+    
   
 
   
@@ -1151,8 +1160,7 @@ esb()
       
         <div class='space-bottom0'>
           <div>
-            <span class='code bold'>body</span> <code class='quiet'>(<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a>
-            = <code>{}</code>)</code>
+            <span class='code bold'>body</span> <code class='quiet'>(<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a>)</code>
 	    Options to include in the aggregation.
 
           </div>

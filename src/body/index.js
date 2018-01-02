@@ -35,6 +35,7 @@ export default (body = {}) => ({
     /**
      * Add aggregation to aggs body
      * @param {Object} aggsBody any aggregation body
+     * @return {appendAggs|subAggs|forkAggs|mergeAggs} see below.
      * @example
      * esb()
      *  .body()

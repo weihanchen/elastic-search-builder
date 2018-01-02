@@ -27,20 +27,6 @@ Project structure
 * `npm run build:docs` - build doc from source code
 * `npm run build` - build to dist
 
-## Development
-Fork, then clone the repo:
-
-```sh
-git clone https://github.com/your-username/elastic-search-builder.git
-```
-
-Install dependencies using npm 
-
-```sh
-npm install
-```
-
-
 ## Pull Request guidelines
 
 * Make your changes in a new branch (this will help you rebase your code if/when needed)

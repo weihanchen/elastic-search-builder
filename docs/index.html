@@ -208,7 +208,7 @@
      <span class="hljs-attr">host</span>: <span class="hljs-string">'localhost:9200'</span>
 });
 <span class="hljs-keyword">const</span> esb = <span class="hljs-built_in">require</span>(<span class="hljs-string">'elastic-search-builder'</span>);
-<span class="hljs-keyword">const</span> option = esb()
+<span class="hljs-keyword">const</span> searchparams = esb()
  .option()
  .indices([<span class="hljs-string">'2016.01.01'</span>])
  .body()
@@ -219,7 +219,7 @@
   })
  .aggs()
  .build();
-client.search(option).then(<span class="hljs-function"><span class="hljs-params">body</span> =&gt;</span> {
+client.search(searchparams).then(<span class="hljs-function"><span class="hljs-params">body</span> =&gt;</span> {
      <span class="hljs-built_in">console</span>.log(body)
 })</pre>
     
@@ -467,7 +467,7 @@ esb().option({
   <p>Add index field to option.</p>
 
 
-  <div class='pre p1 fill-light mt0'>indices(indices: <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Array">Array</a>, ignoreUnavailable: <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Boolean">Boolean</a>, allowNoIndices: <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Boolean">Boolean</a>)</div>
+  <div class='pre p1 fill-light mt0'>indices(indices: <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Array">Array</a>, ignoreUnavailable: <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Boolean">boolean</a>, allowNoIndices: <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Boolean">boolean</a>)</div>
   
   
 
@@ -493,7 +493,7 @@ esb().option({
       
         <div class='space-bottom0'>
           <div>
-            <span class='code bold'>ignoreUnavailable</span> <code class='quiet'>(<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Boolean">Boolean</a>)</code>
+            <span class='code bold'>ignoreUnavailable</span> <code class='quiet'>(<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Boolean">boolean</a>)</code>
 	    Whether specified concrete indices should be ignored when unavailable (missing or closed)
 
           </div>
@@ -502,7 +502,7 @@ esb().option({
       
         <div class='space-bottom0'>
           <div>
-            <span class='code bold'>allowNoIndices</span> <code class='quiet'>(<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Boolean">Boolean</a>)</code>
+            <span class='code bold'>allowNoIndices</span> <code class='quiet'>(<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Boolean">boolean</a>)</code>
 	    Whether to ignore if a wildcard indices expression resolves into no concrete indices. (This includes _all string or when no indices have been specified)
 
           </div>
@@ -882,7 +882,7 @@ esb()
   <p><strong><em><a href="https://www.elastic.co/guide/en/elasticsearch/reference/current/search-request-from-size.html">https://www.elastic.co/guide/en/elasticsearch/reference/current/search-request-from-size.html</a></em></strong></p>
 
 
-  <div class='pre p1 fill-light mt0'>size(size: <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number">Number</a>)</div>
+  <div class='pre p1 fill-light mt0'>size(size: <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a>)</div>
   
   
 
@@ -899,7 +899,7 @@ esb()
       
         <div class='space-bottom0'>
           <div>
-            <span class='code bold'>size</span> <code class='quiet'>(<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number">Number</a>
+            <span class='code bold'>size</span> <code class='quiet'>(<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a>
             = <code>0</code>)</code>
 	    
           </div>
@@ -957,7 +957,7 @@ esb()
   <p><strong><em><a href="https://www.elastic.co/guide/en/elasticsearch/reference/current/search-request-from-size.html">https://www.elastic.co/guide/en/elasticsearch/reference/current/search-request-from-size.html</a></em></strong></p>
 
 
-  <div class='pre p1 fill-light mt0'>from(from: <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number">Number</a>)</div>
+  <div class='pre p1 fill-light mt0'>from(from: <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a>)</div>
   
   
 
@@ -974,7 +974,7 @@ esb()
       
         <div class='space-bottom0'>
           <div>
-            <span class='code bold'>from</span> <code class='quiet'>(<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number">Number</a>
+            <span class='code bold'>from</span> <code class='quiet'>(<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a>
             = <code>0</code>)</code>
 	    
           </div>

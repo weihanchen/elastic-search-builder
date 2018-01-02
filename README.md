@@ -83,29 +83,31 @@ esb()
 ```javascript
 esb()
   .aggs()
-  .appendAggs('all_agent_name', 'name', {
-    "field": "customerPhoneNo"
+  .appendAggs('all_name', 'terms', {
+    "field": "name"
   })
   .subAggs()
-  .appendAggs('all_customer_gender', 'terms', {
-      "field": "customerGender"
+  .appendAggs('all_gender', 'terms', {
+      "field": "gender"
    })
-{
-  "aggs": {
-    "all_agent_name": {
-      "terms": {
-        "field": "customerPhoneNo"
-      },
-      "aggs": {
-        "all_customer_gender": {
-          "terms": {
-            "field": "customerGender"
-          }
-        }
-      }
-    }
-  }
-}
+   .build()
+
+// {
+//   "aggs": {
+//     "all_name": {
+//       "terms": {
+//         "field": "name"
+//       },
+//       "aggs": {
+//         "all_gender": {
+//           "terms": {
+//             "field": "gender"
+//           }
+//         }
+//       }
+//     }
+//   }
+// }
 ```
 
 ### advanced usage
@@ -114,61 +116,63 @@ build nested aggragation without callback
 ```javascript
 esb()
    .aggs()
-   .appendAggs('all_agent_name', 'terms', {
-      "field": "customerPhoneNo"
-   })
-   .subAggs()
-   .forkAggs()
-   .appendAggs('all_customer_phone', 'terms', {
-      "field": "customerPhoneNo"
-   })
-   .subAggs('all_customer_gender', 'terms', {
-      "field": "customerGender"
-   })
-   .mergeAggs()
-   .appendAggs('all_agent_id', 'terms', {
-      "field": "agentId"
-   })
-   .subAggs()
-   .appendAggs('all_customer_gender', 'terms', {
-      "field": "customerGender"
-   })
+   .appendAggs('by_gender', 'terms', {
+    "field": "gender"
+    })
+    .subAggs()
+    .forkAggs()
+    .appendAggs('by_city', 'terms', {
+        "field": "city"
+    })
+    .subAggs()
+    .appendAggs('all_name', 'terms', {
+        "field": "name"
+    })
+    .mergeAggs()
+    .appendAggs('by_language', 'terms', {
+        "field": "language"
+    })
+    .subAggs()
+    .appendAggs('all_name', 'terms', {
+        "field": "name"
+    })
+   .build()
 
 // {
-//  "aggs": {
-//     "all_agent_name": {
-//       "terms": {
-//         "field": "agentName"
-//       },
-//       "aggs": {
-//         "all_customer_phone": {
+//   "aggs": {
+//       "by_gender": {
 //           "terms": {
-//             "field": "customerPhoneNo"
+//             "field": "gender"
 //           },
 //           "aggs": {
-//             "all_customer_gender": {
-//               "terms": {
-//                 "field": "customerGender"
-//               }
+//             "by_city": {
+//                 "terms": {
+//                     "field": "city"
+//                 },
+//                 "aggs": {
+//                   "all_name": {
+//                     "terms": {
+//                       "field": "name"
+//                     }
+//                   }
+//                 }
+//             },
+//             "by_language": {
+//                   "terms": {
+//                     "field": "language"
+//                   },
+//                   "aggs": {
+//                     "all_name": {
+//                         "terms": {
+//                           "field": "name"
+//                         }
+//                     }
+//                   }
 //             }
 //           }
-//         },
-//         "all_agent_id": {
-//           "terms": {
-//             "field": "agentId"
-//           },
-//           "aggs": {
-//             "all_customer_gender": {
-//               "terms": {
-//                 "field": "customerGender"
-//               }
-//             }
-//           }
-//         }
 //       }
-//     }
 //   }
-// }
+}
 ```
 
 ## Documentation

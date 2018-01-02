@@ -57,6 +57,10 @@ describe('aggs', () => {
             .appendAggs('title', 'terms', {
                 field: 'title'
             })
+            .subAggs()
+            .appendAggs('name', 'terms', {
+                field: 'name'
+            })
             .getAggs();
         //Assert
         expect(aggs).toEqual({
@@ -69,6 +73,13 @@ describe('aggs', () => {
                         title: {
                             terms: {
                                 field: 'title'
+                            },
+                            aggs: {
+                                name: {
+                                    terms: {
+                                        field: 'name'
+                                    }
+                                }
                             }
                         }
                     }
@@ -103,62 +114,136 @@ describe('aggs', () => {
                             terms: {
                                 field: 'title'
                             }
+
                         }
                     }
                 }
             }
         });
     });
-    // it('build with nested aggs', () => {
-    //     //Arrange/Act
-    //     const aggs = aggsBuilder()
-    //         .appendAggs('total_cyclists_injured', 'sum', {
-    //             field: 'number_of_cyclist_injured'
-    //         })
-    //         .appendAggs('all_boroughs', 'terms', {
-    //             field: 'borough'
-    //         })
-    //         .subAggs()
-    //         .appendAggs('cause', 'terms', {
-    //             field: 'contributing_factor_vehicle',
-    //             size: 3
-    //         })
-    //         .subAggs()
-    //         .appendAggs('incidents_per_month', 'date_histogram', {
-    //             field: '@timestamp',
-    //             interval: 'month'
-    //         })
-    //         .getAggs();
-    //     //Assert
-    //     expect(aggs).toEqual({
-    //         aggs: {
-    //             all_boroughs: {
-    //                 terms: {
-    //                     field: 'borough'
-    //                 },
-    //                 aggs: {
-    //                     cause: {
-    //                         terms: {
-    //                             field: 'contributing_factor_vehicle',
-    //                             size: 3
-    //                         },
-    //                         aggs: {
-    //                             incidents_per_month: {
-    //                                 date_histogram: {
-    //                                     field: '@timestamp',
-    //                                     interval: 'month'
-    //                                 }
-    //                             }
-    //                         }
-    //                     }
-    //                 }
-    //             },
-    //             total_cyclists_injured: {
-    //                 sum: {
-    //                     field: 'number_of_cyclist_injured'
-    //                 }
-    //             }
-    //         }
-    //     });
-    // });
+    it('build with mixed aggs', () => {
+        //Arrange/Act
+        const aggs = aggsBuilder()
+            .appendAggs('by_gender', 'terms', {
+                "field": "gender"
+            })
+            .subAggs()
+            .forkAggs()
+            .appendAggs('by_city', 'terms', {
+                "field": "city"
+            })
+            .subAggs()
+            .appendAggs('all_name', 'terms', {
+                "field": "name"
+            })
+            .mergeAggs()
+            .appendAggs('by_language', 'terms', {
+                "field": "language"
+            })
+            .subAggs()
+            .appendAggs('all_name', 'terms', {
+                "field": "name"
+            })
+            .getAggs();
+        //Assert
+        expect(aggs).toEqual({
+            "aggs": {
+                "by_gender": {
+                    "terms": {
+                        "field": "gender"
+                    },
+                    "aggs": {
+                        "by_city": {
+                            "terms": {
+                                "field": "city"
+                            },
+                            "aggs": {
+                                "all_name": {
+                                    "terms": {
+                                        "field": "name"
+                                    }
+                                }
+                            }
+                        },
+                        "by_language": {
+                            "terms": {
+                                "field": "language"
+                            },
+                            "aggs": {
+                                "all_name": {
+                                    "terms": {
+                                        "field": "name"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        });
+    });
+    it('build with complex aggs', () => {
+        //Arrange/Act
+        const aggs = aggsBuilder()
+            .appendAggs('by_gender', 'terms', {
+                "field": "gender"
+            })
+            .subAggs()
+            .forkAggs()
+            .appendAggs('by_city', 'terms', {
+                "field": "city"
+            })
+            .subAggs()
+            .appendAggs('all_name', 'terms', {
+                "field": "name"
+            })
+            .forkAggs()
+            .appendAggs('by_language', 'terms', {
+                "field": "language"
+            })
+            .subAggs()
+            .appendAggs('all_name', 'terms', {
+                "field": "name"
+            })
+            .mergeAggs()
+            .mergeAggs()
+            .getAggs();
+        //Assert
+        expect(aggs).toEqual({
+            "aggs": {
+                "by_gender": {
+                    "terms": {
+                        "field": "gender"
+                    },
+                    "aggs": {
+                        "by_city": {
+                            "terms": {
+                                "field": "city"
+                            },
+                            "aggs": {
+                                "all_name": {
+                                    "terms": {
+                                        "field": "name"
+                                    }
+                                    
+                                },
+                                "by_language": {
+                                    "terms": {
+                                        "field": "language"
+                                    },
+                                    "aggs": {
+                                        "all_name": {
+                                            "terms": {
+                                                "field": "name"
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        });
+    });
 });

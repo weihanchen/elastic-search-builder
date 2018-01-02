@@ -84,7 +84,7 @@ export default (body = {}) => ({
     },
     /**
      * ***https://www.elastic.co/guide/en/elasticsearch/reference/current/search-request-from-size.html***
-     * @param {Number} size
+     * @param {number} size
      * @example
      * esb()
      *  .size(10)
@@ -102,7 +102,7 @@ export default (body = {}) => ({
     },
     /**
      * ***https://www.elastic.co/guide/en/elasticsearch/reference/current/search-request-from-size.html***
-     * @param {Number} from
+     * @param {number} from
      * @example
      * esb()
      *  .from(1)

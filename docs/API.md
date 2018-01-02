@@ -31,7 +31,7 @@ const client = new elasticsearch.Client({
      host: 'localhost:9200'
 });
 const esb = require('elastic-search-builder');
-const option = esb()
+const searchparams = esb()
  .option()
  .indices(['2016.01.01'])
  .body()
@@ -42,7 +42,7 @@ const option = esb()
   })
  .aggs()
  .build();
-client.search(option).then(body => {
+client.search(searchparams).then(body => {
      console.log(body)
 })
 ```
@@ -105,8 +105,8 @@ Add index field to option.
 **Parameters**
 
 -   `indices` **[Array](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Array)** multi index
--   `ignoreUnavailable` **[Boolean](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Boolean)** Whether specified concrete indices should be ignored when unavailable (missing or closed)
--   `allowNoIndices` **[Boolean](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Boolean)** Whether to ignore if a wildcard indices expression resolves into no concrete indices. (This includes \_all string or when no indices have been specified)
+-   `ignoreUnavailable` **[boolean](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Boolean)** Whether specified concrete indices should be ignored when unavailable (missing or closed)
+-   `allowNoIndices` **[boolean](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Boolean)** Whether to ignore if a wildcard indices expression resolves into no concrete indices. (This includes \_all string or when no indices have been specified)
 
 **Examples**
 
@@ -232,7 +232,7 @@ esb()
 
 **Parameters**
 
--   `size` **[Number](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number)**  (optional, default `0`)
+-   `size` **[number](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number)**  (optional, default `0`)
 
 **Examples**
 
@@ -254,7 +254,7 @@ esb()
 
 **Parameters**
 
--   `from` **[Number](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number)**  (optional, default `0`)
+-   `from` **[number](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number)**  (optional, default `0`)
 
 **Examples**
 

@@ -35,15 +35,59 @@ git clone https://github.com/your-username/elastic-search-builder.git
 ```
 
 Install dependencies using npm 
+
 ```sh
 npm install
 ```
 
-#### Run tests
+
+## Pull Request guidelines
+
+* Make your changes in a new branch (this will help you rebase your code if/when needed)
+
+```sh
+git checkout -b my-feature-branch
+```
+
+* Make sure all tests pass
+
 ```sh
 npm run lint
 npm run test
 ```
 
+You may need to rebase your branch on top of the latest version of the master branch. To do so is simple:
 
-## Pull Request guidelines
+1. checkout master
+
+```sh
+git checkout master
+```
+
+2. Pull the latest changes from the server
+
+```sh
+git pull upstream master
+```
+
+3. Switch back to your feature branch
+
+```sh
+git checkout my-feature-branch
+```
+
+4. Rebase it on top of the master branch (there might be conflicts you'll need to resolve)
+
+```sh
+git rebase master -i
+```
+
+5. Push the changes into your remote repository
+
+```sh
+git push
+```
+
+6. Send a pull request to `elastic-search-builder:master`
+
+That's it! Thank you for contributing!

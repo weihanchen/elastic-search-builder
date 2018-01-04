@@ -14,6 +14,11 @@ export default (body = {}) => ( {
      *  .options()
      *  .indices(['2016.01.01'], true, true)
      *  .build()
+     * @example
+     * esb()
+     *  .options()
+     *  .indices('2016.01.01,2016.02.02', false, false)
+     *  .build()
      */
     indices(indices = [], ignoreUnavailable, allowNoIndices) {
         Object.assign(this, indicesBuilder(indices, ignoreUnavailable, allowNoIndices));

@@ -125,6 +125,13 @@ esb()
  .build()
 ```
 
+```javascript
+esb()
+ .options()
+ .indices('2016.01.01,2016.02.02', false, false)
+ .build()
+```
+
 ## type
 
 Add type field to option

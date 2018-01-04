@@ -39,6 +39,61 @@ describe('option', () => {
 });
 
 describe('use case', () => {
+    it('build with metrics aggregations', () => {
+        //Arrange/Act
+        const option = esb()
+            .option()
+            .indices('20170702', false, false)
+            .type('student')
+            .body()
+            .from(5)
+            .size(10)
+            .aggs()
+            .appendAggs('class', 'terms', {
+                field: 'class'
+            })
+            .subAggs()
+            .appendAggs('name', 'terms', {
+                field: 'name'
+            })
+            .appendAggs('grade_avg', 'avg', {
+                "field": "grade",
+                "missing": 10
+            })
+            .build();
+
+        //Assert
+        expect(option).toEqual({
+            "index": "20170702",
+            "type": "student",
+            "ignoreUnavailable": false,
+            "allowNoIndices": false,
+            "body": {
+                "from": 5,
+                "size": 10,
+                "aggs": {
+                    "class": {
+                        "terms": {
+                            "field": "class"
+                        },
+                        "aggs": {
+                            "name": {
+                                "terms": {
+                                    "field": "name"
+                                }
+                            },
+                            "grade_avg": {
+                                "avg": {
+                                    "field": "grade",
+                                    "missing": 10
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        });
+    });
     it('build with complex case', () => {
         //Arrange/Act
         const option = esb()

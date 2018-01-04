@@ -1,5 +1,5 @@
 export default (indices, ignoreUnavailable = false, allowNoIndices = false) => {
-    const index = indices.join(',');
+    const index = [].concat(indices).join(',');
     return {
         getIndex: () => ({
             index,

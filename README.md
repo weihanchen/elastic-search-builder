@@ -82,6 +82,7 @@ esb()
 
 ```javascript
 esb()
+  .body()
   .aggs()
   .appendAggs('all_name', 'terms', {
     "field": "name"
@@ -126,6 +127,7 @@ build nested aggragation without callback
 
 ```javascript
 esb()
+   .body()
    .aggs()
    .appendAggs('by_gender', 'terms', {
     "field": "gender"

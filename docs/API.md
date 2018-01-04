@@ -112,7 +112,7 @@ Add index field to option.
 
 **Parameters**
 
--   `indices` **[Array](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Array)** multi index (optional, default `[]`)
+-   `indices` **([Array](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Array) \| [string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String))** multi index (optional, default `[]`)
 -   `ignoreUnavailable` **[boolean](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Boolean)** Whether specified concrete indices should be ignored when unavailable (missing or closed)
 -   `allowNoIndices` **[boolean](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Boolean)** Whether to ignore if a wildcard indices expression resolves into no concrete indices. (This includes \_all string or when no indices have been specified)
 

@@ -34,7 +34,9 @@
         "eslint": "^4.12.1",
         "jest": "^21.2.1"
     },
-    "dependencies": {},
+    "dependencies": {
+        "update-notifier": "^2.3.0"
+    },
     "repository": {
         "type": "git",
         "url": "git@gitlab.com:weihanchen/elastic-search-builder.git"

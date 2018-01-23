@@ -1,0 +1,30 @@
+language: node_js
+node_js:
+  - 6.0.0
+before_script:
+  - npm install
+script:
+  - npm run lint
+  - npm run test
+
+deploy:
+  - provider: pages
+    skip_cleanup: true
+    github_token: $GITHUB_TOKEN
+    on:
+      branch: master
+    local_dir: docs
+    email: $GITHUB_MAIL
+  - provider: npm
+    email: $GITHUB_MAIL
+    skip_cleanup: true
+    api_key:
+      secure: 
+
+branches:
+  only:
+    - master
+notification:
+  email:
+    - ${GITHUB_MAIL}
+  on_success: always

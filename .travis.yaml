@@ -18,8 +18,11 @@ deploy:
   - provider: npm
     email: $GITHUB_MAIL
     skip_cleanup: true
-    api_key:
-      secure: 
+    on:
+      tags: true
+      repo: weihanchen/elasticsearch-builder
+      branch: master
+      node: '6.0.0'
 
 branches:
   only:

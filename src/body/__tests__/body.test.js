@@ -61,6 +61,18 @@ describe('body', () => {
             }
         });
     });
+    it('build with raw option', () => {
+        //Arrange/Act
+        const body = bodyBuilder()
+            .rawOption('_source', ['obj1.*', 'obj2.*'])
+            .getBody();
+        //Assert
+        expect(body).toEqual({
+            body: {
+                _source: ['obj1.*', 'obj2.*']
+            }
+        });
+    });
     it('build with query', () => {
         //Arrange/Act
         const body = bodyBuilder()

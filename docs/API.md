@@ -12,6 +12,7 @@
 -   [aggs](#aggs)
 -   [fields](#fields)
 -   [size](#size)
+-   [rawOption](#rawoption)
 -   [from](#from)
 -   [appendAggs](#appendaggs)
 -   [subAggs](#subaggs)
@@ -261,6 +262,28 @@ esb()
 {
      body: {
          size: 10
+     }
+}
+```
+
+## rawOption
+
+**Parameters**
+
+-   `key` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** 
+-   `value` **Any** 
+
+**Examples**
+
+```javascript
+esb()
+ .body()
+ .rawOption('_source', ['obj1.*', 'obj2.*'])
+ .build();
+// result:
+{
+     body: {
+         _source: ['obj1.*', 'obj2.*']
      }
 }
 ```

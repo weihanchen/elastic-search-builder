@@ -102,6 +102,26 @@ export default (body = {}) => ({
         return this;
     },
     /**
+     * 
+     * @param {string} key 
+     * @param {Any} value 
+     * @example
+     * esb()
+     *  .body()
+     *  .rawOption('_source', ['obj1.*', 'obj2.*'])
+     *  .build();
+     * // result:
+     * {
+     *      body: {
+     *          _source: ['obj1.*', 'obj2.*']
+     *      }
+     * }
+     */
+    rawOption(key, value) {
+        body[key] = value;
+        return this;
+    },
+    /**
      * ***https://www.elastic.co/guide/en/elasticsearch/reference/current/search-request-from-size.html***
      * @param {number} from
      * @example

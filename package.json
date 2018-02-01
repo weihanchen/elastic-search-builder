@@ -8,7 +8,8 @@
         "src/"
     ],
     "scripts": {
-        "build:docs": "npm run build:md && documentation build src/index.js -o docs -f html",
+        "build:docs": "npm run build:md && npm run build:html",
+        "build:html": "documentation build src/index.js -o docs/html -f html",
         "build:md": "documentation build src/index.js -o docs/API.md -f md",
         "build": "npm run lint && npm run test && babel src -d dist",
         "lint": "eslint src",

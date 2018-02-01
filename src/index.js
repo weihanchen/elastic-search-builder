@@ -1,10 +1,6 @@
 'use strict';
-import updateNotifier from 'update-notifier';
 import optionBuilder from './option';
 import bodyBuilder from './body';
-const pkg = require('../package.json');
-updateNotifier({ pkg }).notify();
-
 
 /**
  * elastic-search-builder working with [elasticsearch.js](https://www.elastic.co/guide/en/elasticsearch/client/javascript-api/current/index.html)

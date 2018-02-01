@@ -147,7 +147,7 @@ export default (aggsBody = {}) => {
             return this;
         },
         /**
-         * merge to forked aggs
+         * @see {@link forkAggs}
          */
         mergeAggs() {
             if (forks.length <= 0) return this;

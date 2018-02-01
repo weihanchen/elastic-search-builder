@@ -446,7 +446,7 @@ esb()
 
 ## mergeAggs
 
-merge to forked aggs
+-   **See: [forkAggs](#forkaggs)**
 
 ## bool
 

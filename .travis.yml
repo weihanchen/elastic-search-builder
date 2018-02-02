@@ -1,6 +1,6 @@
 language: node_js
 node_js:
-- 8.0.0
+- 6.0.0
 before_script:
 - npm install
 script:
@@ -20,7 +20,7 @@ deploy:
       tags: true
       repo: weihanchen/elasticsearch-builder
       branch: master
-      node: 8.0.0
+      node: 6.0.0
   api_key:
     secure: "$NPM_TOKEN"
 branches:

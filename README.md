@@ -8,7 +8,9 @@ This lib working with [elasticsearch.js](https://www.elastic.co/guide/en/elastic
 ## Documentation
 
 * [API.md](./docs/API.md)
+
 ## Usage
+
 ```javascript
 /* in ES 5 */
 const elasticsearch = require('elasticsearch');
@@ -191,11 +193,28 @@ esb()
 ```
 
 ## Development
-#### 
-#### Test case
+#### debug with browser
+
+```sh
+npm run dev
+```
+#### run test
 
 ```sh
 npm run test
+```
+
+#### build documentation
+
+```sh
+npm run build:docs
+```
+
+#### Manully publish to npm
+
+```sh
+npm login
+npm publish
 ```
 
 ## Credits

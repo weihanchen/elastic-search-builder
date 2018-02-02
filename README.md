@@ -1,6 +1,8 @@
 Elasticsearch Builder
 ===
 
+[![Build Status](https://travis-ci.org/weihanchen/elastic-search-builder.svg?branch=master)](https://travis-ci.org/weihanchen/elastic-search-builder)
+
 This lib working with [elasticsearch.js](https://www.elastic.co/guide/en/elasticsearch/client/javascript-api/current/index.html), flatten search params and  query bodies.
 
 ## Installation

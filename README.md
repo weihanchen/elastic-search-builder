@@ -12,7 +12,7 @@ npm install elastic-search-builder --save
 ## Documentation
 
 * [Documentation](https://weihanchen.github.io/elastic-search-builder/)
-* [API.md](https://weihanchen.github.io/elastic-search-builder/docs/API.md)
+* [API.md](https://github.com/weihanchen/elastic-search-builder/blob/gh-pages/docs/API.md)
 
 ## Usage
 

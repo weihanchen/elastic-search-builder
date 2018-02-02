@@ -8,13 +8,13 @@ script:
 deploy:
   - provider: pages
     skip_cleanup: true
-    github_token: "$GITHUB_TOKEN"
+    github_token: $GITHUB_TOKEN
     on:
       branch: master
     local_dir: public
-    email: "$GITHUB_MAIL"
+    email: $GITHUB_MAIL
   - provider: npm
-    email: "$GITHUB_MAIL"
+    email: $GITHUB_MAIL
     skip_cleanup: true
     on:
       tags: true
@@ -22,11 +22,11 @@ deploy:
       branch: master
       node: 6.0.0
   api_key:
-    secure: "$NPM_TOKEN"
+    secure: $NPM_TOKEN
 branches:
   only:
   - master
 notification:
   email:
-  - "${GITHUB_MAIL}"
+  - $GITHUB_MAIL
   on_success: always

@@ -21,8 +21,8 @@ deploy:
       repo: weihanchen/elasticsearch-builder
       branch: master
       node: 6.0.0
-  api_key:
-    secure: $NPM_TOKEN
+    api_key:
+      secure: $NPM_TOKEN
 branches:
   only:
   - master

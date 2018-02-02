@@ -6,7 +6,6 @@ before_script:
 script:
 - npm run build
 deploy:
-  matrix:
   - provider: pages
     skip_cleanup: true
     github_token: "$GITHUB_TOKEN"

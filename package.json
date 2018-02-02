@@ -46,7 +46,7 @@
     "dependencies": {},
     "repository": {
         "type": "git",
-        "url": "git@gitlab.com:weihanchen/elastic-search-builder.git"
+        "url": "https://github.com/weihanchen/elastic-search-builder.git"
     },
     "keywords": [
         "elasticsearch",

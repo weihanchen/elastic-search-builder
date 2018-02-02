@@ -1,32 +1,33 @@
 language: node_js
 node_js:
-  - 8.0.0
+- 8.0.0
 before_script:
-  - npm install
+- npm install
 script:
-  - npm run build
-
+- npm run build
 deploy:
+  matrix:
   - provider: pages
     skip_cleanup: true
-    github_token: $GITHUB_TOKEN
+    github_token: "$GITHUB_TOKEN"
     on:
       branch: master
     local_dir: public
-    email: $GITHUB_MAIL
+    email: "$GITHUB_MAIL"
   - provider: npm
-    email: $GITHUB_MAIL
+    email: "$GITHUB_MAIL"
     skip_cleanup: true
     on:
       tags: true
       repo: weihanchen/elasticsearch-builder
       branch: master
-      node: '8.0.0'
-
+      node: 8.0.0
+  api_key:
+    secure: "$NPM_TOKEN"
 branches:
   only:
-    - master
+  - master
 notification:
   email:
-    - ${GITHUB_MAIL}
+  - "${GITHUB_MAIL}"
   on_success: always

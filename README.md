@@ -5,7 +5,9 @@ This lib working with [elasticsearch.js](https://www.elastic.co/guide/en/elastic
 
 ## Installation
 
+## Documentation
 
+* [API.md](./docs/API.md)
 ## Usage
 ```javascript
 /* in ES 5 */
@@ -188,12 +190,9 @@ esb()
 }
 ```
 
-## Documentation
-
-* [API.md](./docs/API.md)
-
-## Test
-Run unit tests:
+## Development
+#### 
+#### Test case
 
 ```sh
 npm run test

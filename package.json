@@ -16,7 +16,6 @@
         "dev": "parcel site/index.html -d public",
         "lint": "eslint src",
         "lint:fix": "eslint --fix src",
-        "release": "npm run build && npm publish",
         "test": "jest src",
         "test:coverage": "jest --coverage --runInBand --forceExit",
         "test:watch": "jest --watch"

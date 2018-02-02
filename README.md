@@ -5,6 +5,10 @@ This lib working with [elasticsearch.js](https://www.elastic.co/guide/en/elastic
 
 ## Installation
 
+```sh
+npm install elastic-search-builder --save
+```
+
 ## Documentation
 
 * [API.md](./docs/API.md)

@@ -1,11 +1,10 @@
 language: node_js
 node_js:
-  - 6.0.0
+  - 8.0.0
 before_script:
   - npm install
 script:
-  - npm run lint
-  - npm run test
+  - npm run build
 
 deploy:
   - provider: pages
@@ -13,7 +12,7 @@ deploy:
     github_token: $GITHUB_TOKEN
     on:
       branch: master
-    local_dir: docs
+    local_dir: public
     email: $GITHUB_MAIL
   - provider: npm
     email: $GITHUB_MAIL
@@ -22,7 +21,7 @@ deploy:
       tags: true
       repo: weihanchen/elasticsearch-builder
       branch: master
-      node: '6.0.0'
+      node: '8.0.0'
 
 branches:
   only:

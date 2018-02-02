@@ -1,18 +1,17 @@
+/* library declare */
+import esBuilder from '../src';
+window.esBuilder = esBuilder;
+window.jQuery = window.$ = require('jquery');
+
+/* scripts */
+import CodeMirror from 'codemirror/lib/codemirror.js';
+import 'bootstrap/dist/js/bootstrap.min.js';
+
 /* Stylesheets */
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'font-awesome/css/font-awesome.min.css';
 import 'codemirror/lib/codemirror.css';
 import './stylesheets/style.scss';
-
-/* scripts */
-import CodeMirror from 'codemirror/lib/codemirror.js';
-import 'bootstrap/dist/js/bootstrap.min.js';
-import 'jquery/dist/jquery.min.js';
-
-/* library declare */
-import esBuilder from '../src';
-window.esBuilder = esBuilder;
-
 
 /* declare */
 const inputTextArea = document.getElementById('input');
@@ -35,7 +34,6 @@ const onChange = () => {
         outputEditor.setValue(json);
     } catch (err) {
         outputEditor.setValue(err.toString());
-        console.error('invalid input', err);
     }
 };
 

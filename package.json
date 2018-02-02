@@ -12,6 +12,7 @@
         "build:html": "documentation build src/index.js -o docs/html -f html",
         "build:md": "documentation build src/index.js -o docs/API.md -f md",
         "build": "npm run lint && npm run test && babel src -d dist",
+        "dev": "parcel site/index.html -d public",
         "lint": "eslint src",
         "lint:fix": "eslint --fix src",
         "release": "npm run build && npm publish",
@@ -31,9 +32,16 @@
         "babel-eslint": "^7.2.3",
         "babel-preset-es2015": "^6.24.1",
         "babel-register": "^6.26.0",
+        "bootstrap": "^4.0.0",
+        "codemirror": "^5.34.0",
         "documentation": "^5.3.3",
         "eslint": "^4.12.1",
-        "jest": "^21.2.1"
+        "font-awesome": "^4.7.0",
+        "jest": "^21.2.1",
+        "jquery": "^3.3.1",
+        "node-sass": "^4.7.2",
+        "parcel-bundler": "^1.5.1",
+        "popper.js": "^1.12.9"
     },
     "dependencies": {},
     "repository": {

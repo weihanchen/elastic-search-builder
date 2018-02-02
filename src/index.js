@@ -80,5 +80,5 @@ const esBuilder = () => ({
     }
 });
 
-export default esBuilder;
 module.exports = esBuilder;
+export default esBuilder;

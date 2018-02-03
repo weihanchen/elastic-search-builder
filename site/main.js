@@ -1,11 +1,14 @@
 /* library declare */
 import esBuilder from '../src';
+import jquery from 'jquery';
 window.esBuilder = esBuilder;
-window.jQuery = window.$ = require('jquery');
+window.$ = window.jQuery = jquery;
 
 /* scripts */
+
+
 import CodeMirror from 'codemirror/lib/codemirror.js';
-import 'bootstrap/dist/js/bootstrap.min.js';
+// import 'bootstrap/dist/js/bootstrap.min.js';
 
 /* Stylesheets */
 import 'bootstrap/dist/css/bootstrap.min.css';

@@ -17,6 +17,7 @@ deploy:
     email: $GITHUB_MAIL
     skip_cleanup: true
     on:
+      tags: true
       repo: weihanchen/elasticsearch-builder
       branch: master
       node: 8.0.0
